@@ -1,0 +1,18 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^(Activar-cuenta)$ index.php?v-config=$1
+RewriteRule ^(Mi-Clínica)$ index.php?v-config=$1
+RewriteRule ^(LicenciaDentad)$ index.php?v-config=$1
+
+
+
+
+RewriteRule ^(Agenda)$ index.php?view=$1
+RewriteRule ^(Todos-mis-pacientes)$ index.php?view=$1
+
+
+
+
+
+

@@ -1,0 +1,332 @@
+html, body {
+  height: 100%;
+  background: #fff; }
+
+.bloque {
+  display: inline-block; }
+
+.fondo img {
+  height: 100%;
+  width: 100%; }
+
+.display-table-cell {
+  display: table-cell;
+  height: 100%;
+  padding: 0px; }
+
+.mt {
+  margin-top: 3em; }
+
+#header-login {
+  background-color: #31b9bb;
+  color: #fff;
+  text-align: center; }
+
+#login-box {
+  width: 25em;
+  border: 5px solid #eee;
+  margin-top: -105px;
+  color: #000; }
+
+.title-login {
+  font-size: 2em;
+  padding: 0 0 0 3em; }
+
+#bg-login {
+  background-color: #FEFEFE; }
+
+#modal-login-footer {
+  padding: 0;
+  align-content: center;
+  text-align: center; }
+
+.text-footer {
+  padding: .5em 7em .5em 1em;
+  color: #000; }
+
+.boton {
+  display: inline-block;
+  width: auto;
+  padding: 0 1.1em;
+  line-height: 2.5rem;
+  border-radius: 5em;
+  white-space: nowrap;
+  font-size: 1.1em;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.2s; }
+
+.boton:active {
+  -webkit-transform: scale(0.97);
+          transform: scale(0.97); }
+
+.boton:hover {
+  width: auto;
+  text-decoration: none;
+  cursor: pointer; }
+
+.boton:focus {
+  outline: 0; }
+
+.btn-banner-green {
+  color: #000;
+  border: 2px solid #31b9bb;
+  font-size: 1.5em;
+  line-height: 2;
+  color: #fff;
+  margin: 0 0 2em 0; }
+
+.btn-banner-green:hover {
+  color: #fff;
+  background-color: #31b9bb; }
+
+.btn-nav-blue {
+  background: #31b9bb;
+  color: #fff;
+  border: 2px solid #394773;
+  font-size: 1.6em;
+  font-weight: normal; }
+
+.btn-nav-blue:hover {
+  background-color: transparent;
+  text-align: right;
+  color: #fff;
+  border: 2px solid #31b9bb; }
+
+.btn-banner-orange {
+  color: #fff;
+  border: 2px solid #f4641e;
+  background-color: #f4641e;
+  font-size: 1.5em;
+  line-height: 2;
+  margin: 2.2em 0 .4em 0; }
+
+.btn-banner-orange:hover {
+  color: #fff;
+  background-color: transparent; }
+
+.btn-login-orange {
+  color: #fff;
+  border: 2px solid #f4641e;
+  background-color: #f4641e;
+  font-size: 1.1em;
+  line-height: 2; }
+
+.btn-login-orange:hover {
+  color: #000;
+  background-color: transparent; }
+
+.navbar-dentad {
+  background-color: #394773;
+  color: #eee; }
+
+.img-logo {
+  height: 70px;
+  padding: 5px 0px; }
+
+@media (max-width: 768px) {
+  .img-logo {
+    padding: 0 45px; } }
+
+.suscribete {
+  margin-left: 0; }
+
+.boton-suscribirse {
+  padding: 0 0 0 13.5em; }
+
+@media (max-width: 768px) {
+  .boton-suscribirse {
+    display: none; } }
+
+@media (max-width: 1024px) {
+  .boton-suscribirse {
+    position: relative; } }
+
+.banner-info {
+  background-color: #394773; }
+
+@media (max-width: 768px) {
+  .banner-info {
+    height: 90vh; } }
+
+@media (max-width: 767px) {
+  .banner-info {
+    height: auto; } }
+
+.title-banner {
+  font-family: 'Pangolin';
+  font-size: 6em;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .1px;
+  padding: .8em 0 0 0; }
+
+@media (max-width: 768px) {
+  .title-banner {
+    font-size: 4em;
+    font-weight: 900;
+    line-height: 1;
+    padding: 2em 0 0 0; } }
+
+.text-banner {
+  font-size: 1.5em;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center; }
+
+@media (max-width: 600px) {
+  .text-banner {
+    display: none; } }
+
+.img-laptop {
+  position: relative;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: block;
+  max-width: 100%; }
+
+@media (max-width: 768px) {
+  .img-laptop {
+    display: none; } }
+
+/* estilos loader page */
+#contenedor {
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  transition: all 1s;
+  z-index: 10000; }
+
+#cargar {
+  border: 8px solid #e6fafc;
+  border-top-color: #f4641e;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-animation: girar 0.3s linear infinite;
+          animation: girar 0.3s linear infinite; }
+
+@-webkit-keyframes girar {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes girar {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+#DentadCaracteristicas {
+  background-color: #fff;
+  color: #262b34; }
+
+.title-caracteristicas {
+  font-family: 'Pangolin';
+  font-size: 4.5em;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .1px;
+  padding: .8em 0 0 0;
+  text-align: center; }
+
+.text-caracteristicas {
+  font-size: 2.5em;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 2px; }
+
+@media (max-width: 767px) {
+  .title-caracteristicas {
+    font-family: 'Pangolin';
+    font-size: 6em;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: .1px;
+    padding: .8em 0 0 0; } }
+
+@media (max-width: 768px) {
+  .title-caracteristicas {
+    font-size: 3.2em;
+    font-weight: 900;
+    line-height: 1;
+    padding: 1.5em 0 0 0;
+    text-align: center; }
+  .text-caracteristicas {
+    font-size: 1.7em;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 0; } }
+
+.row-caracteristicas {
+  margin: 0 0 100px 0; }
+
+.title-item {
+  font-size: 3em;
+  color: #394773;
+  padding: 3em 0 0em 0; }
+
+.title-item-dos {
+  font-size: 2.5em; }
+
+.text-item {
+  color: #394773; }
+
+@media (max-width: 740px) {
+  .title-item {
+    font-size: 2.2em;
+    font-weight: 600;
+    text-align: center;
+    margin-top: -1em; }
+  .text-item {
+    font-size: 1em;
+    text-align: center; } }
+
+.img-item {
+  height: 28em;
+  width: auto;
+  padding: 7em 0 0 0;
+  margin-bottom: 3em; }
+
+@media (max-width: 740px) {
+  .img-item {
+    display: none; } }
+
+.caracteristica-dos {
+  background: #e6fafc; }
+
+.caracteristica-tres {
+  background: #fff;
+  color: #262b34; }
+
+#side-bar-dentad {
+  background-color: #394773; }
+
+#logo-dentad {
+  background-color: #394773; }
+
+.fix-top {
+  position: fixed !important; }
+
+.barra-y {
+  overflow-y: hidden; }
