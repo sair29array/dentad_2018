@@ -92,7 +92,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./Todos-mis-pacientes" class="nav-link">
+                <a href="./Todos-mis-pacientes" class="nav-link <?php if(@$_GET["view"]=="Todos-mis-pacientes"){?> active <?php  } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Todos</p>
                 </a>

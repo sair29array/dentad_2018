@@ -30,5 +30,53 @@
 
 
 			}
+			public function VerificarSiExisteUnPaciente_id($n_identidad)
+			{
+				include("../../../Config/conexion.php");
+				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where num_identidad = '$n_identidad' ");
+				$paciente = 0; // esta variable indica si existe o no el paciente
+				foreach ($consult_ as $u) {
+					$paciente++;
+				}
+
+				if ($paciente == 0) {
+					return 1;
+				}else 
+				{
+					return 0;
+				}
+			}
+
+			public function VerificarSiExisteUnPaciente_e($email)
+			{
+				include("../../../Config/conexion.php");
+				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where email = '$email' ");
+				$email = 0; // esta variable indica si existe o no el email
+				foreach ($consult_ as $u) {
+					$email++;
+				}
+
+				if ($email == 0) {
+					return 1;
+				}else 
+				{
+					return 0;
+				}
+			}
+
+			public function RegistrarNuevoPaciente($n, $a, $t, $i, $e, $c, $id_user_admin, $id_clinica, $fecha_actual, $dn, $mn, $an, $sex)
+			{
+				// n = nombre clinica.  $u = ubicacion . 
+				include("../../../Config/conexion.php");
+			    $consulta = mysqli_query($conn, "INSERT INTO pacientes (id_clinica, nombres,apellidos,tipo_identidad, num_identidad, sexo, dia_nacimiento, mes_nacimiento, anio_nacimiento, telefono, email, fecha_registro, quien_lo_registro )  VALUES ('$id_clinica', '$n', '$a', '$t', '$i','$sex','$dn','$mn','$an', '$c', '$e','$fecha_actual','$id_user_admin')");
+			}
+
+
+			public function GetAllPacientes($id_clinica)
+			{
+				include("../Config/conexion.php");
+				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where id_clinica = '$id_clinica' ORDER BY id DESC " );
+				return $consult_;
+			}
 		}
  ?>

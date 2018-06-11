@@ -1,12 +1,24 @@
 <?php 
+
+// /En el NAV VOY A LLAMAR CADA OBJ PARA SACAR LOS ATRIBUTOS DE CADA UNO 
+//POR EJEMPLO LOS DATOS DE LOS USERS ADMINISTRADORES
+
+
+
+
+
+
+// GET FECHA ACTUAL _:
+$fecha_actual = $super_fecha ->GetFechaActual();
 // Get DAtos del user admin:
-$user = $useR->GetDatosUsuarioID($_SESSION["_user_log"]);
+$user = $useR->GetDatosUsuarioID($_SESSION["_user_log"]); // admin
 foreach ($user as $iuser) {}
 
 // acontinuacion nombrare a ciewrtas cvariables porque es necesaario que siempre esten listas para cualquier operacion ya sea desde js o php, y lo hago en este archivo debido a que es este unos de los que se mantiene presente en cada paginacion
 
 $nombre_clinica = "";
 $ubicacion_clinica = "";
+$id_clinica = "";
 //Get datos de la clinica
 $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
   $isset_Clinica = 0; // indica si ya el user tiene una clinica a su nombre
@@ -19,11 +31,23 @@ if ($isset_Clinica != 0) // quiere decir que el user si tiene ina clinica yua re
   // entonces: 
   $nombre_clinica = $clinica["nombre"];
   $ubicacion_clinica = $clinica["direccion"];
+  $id_clinica = $clinica["id"];
+
+
+// sacamos la info de todos sus pacientes
+  $pacientes_DB = $super_pacientes ->GetAllPacientes($id_clinica);
+  
+
 }
+
+
+
+
 
 
  ?>
 <script> 
+  var fecha_actual = "<?php echo $fecha_actual ?>";
 
   var email_ = "<?php echo $_SESSION["_user_log"]; ?>";
   var nombre_adminictrador_DB = "<?php echo $iuser["nombre"] ?>";
@@ -31,6 +55,7 @@ if ($isset_Clinica != 0) // quiere decir que el user si tiene ina clinica yua re
   var id_user_="<?php echo $iuser["id"] ?>"; 
   var nombre_clinica_DB = "<?php echo $nombre_clinica ?>";
   var ubicacion_clinica_DB = "<?php echo $ubicacion_clinica ?>";
+  var id_clinica = "<?php echo $id_clinica ?>";
 </script>
 <!-- Navbar -->
   <nav  class="  main-header navbar navbar-expand bg-white navbar-light border-bottom">

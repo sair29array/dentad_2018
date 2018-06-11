@@ -6,11 +6,13 @@ require_once("Config/class/class_config_acount.php");
 require_once("Config/class/class_clinica.php");
 require_once("Config/class/class_pacientes.php");
 require_once("Config/class/class_colaboradores.php");
+require_once("Config/class/class_fecha.php");
 $useR = new useR();
 $super_config = new config_acount();
 $super_clinica = new Clinica();
 $super_pacientes = new pacientes();
 $super_colaboradores = new colaboradores();
+$super_fecha = new fecha();
 if (!isset($_SESSION["_user_log"])) 
   {
    header("location: ../ ");
@@ -133,6 +135,8 @@ to get the desired effect
       "autoWidth": false
     });
   });
+
+ 
 </script>
 
 
@@ -171,8 +175,21 @@ to get the desired effect
 
 
 <!-- VUE Y AXIOS OBJETOS REQUIREDS-->
-<script src="Config/js/activar-cuenta.js"></script>
-<script src="Config/js/configurar_info_clinica.js"></script>
+<?php 
+    if (@$_GET["v-config"]=="Activar-cuenta") {
+      ?> <script src="Config/js/activar-cuenta.js"></script><?php 
+    }
+
+    if (@$_GET["v-config"]=="Mi-Clínica") {
+      ?> <script src="Config/js/configurar_info_clinica.js"></script><?php 
+    }
+
+    if (@$_GET["view"]=="Todos-mis-pacientes") {
+      ?>  <script src="Config/js/Pacientes.js" ></script> <?php 
+    }
+ ?>
+
+
 
 
 
