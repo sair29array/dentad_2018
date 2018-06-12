@@ -7,6 +7,16 @@ require_once("Config/class/class_clinica.php");
 require_once("Config/class/class_pacientes.php");
 require_once("Config/class/class_colaboradores.php");
 require_once("Config/class/class_fecha.php");
+
+//// CArbon libreria para fechas
+//https://www.youtube.com/watch?v=CzyMmjLVXiM tutorial en youtube
+require_once("Config/vendor/autoload.php");
+use Carbon\Carbon;
+date_default_timezone_set("America/Bogota");
+Carbon::setLocale("es");
+/// carbon libreria para fechas end
+
+
 $useR = new useR();
 $super_config = new config_acount();
 $super_clinica = new Clinica();
