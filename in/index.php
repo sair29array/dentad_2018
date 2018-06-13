@@ -7,6 +7,7 @@ require_once("Config/class/class_clinica.php");
 require_once("Config/class/class_pacientes.php");
 require_once("Config/class/class_colaboradores.php");
 require_once("Config/class/class_fecha.php");
+require_once("Config/class/class_agenda.php");
 
 //// CArbon libreria para fechas
 //https://www.youtube.com/watch?v=CzyMmjLVXiM tutorial en youtube
@@ -23,6 +24,8 @@ $super_clinica = new Clinica();
 $super_pacientes = new pacientes();
 $super_colaboradores = new colaboradores();
 $super_fecha = new fecha();
+$super_agenda = new Agenda();
+
 if (!isset($_SESSION["_user_log"])) 
   {
    header("location: ../ ");
@@ -58,6 +61,26 @@ if (isset($_GET["ds"]/*DestroySession*/)) {
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="dist/css/style_transitions.css">
+  
+  <!-- REQUIRED SCRIPTS -->
+
+
+<script src="plugins/jquery/jquery.js"></script>
+<?php 
+    if (@$_GET["view"]=="Agenda" || (!isset($_GET["view"]) && !isset($_GET["v-config"]))) 
+    {
+      ?>
+      <link rel="stylesheet" type="text/css" href="dist/fullcalendar/fullcalendar.min.css">
+      <!--PARA LA AGENDA: 
+        TUTORIAL EN YOUTUBE DE CALENDAR:
+        https://www.youtube.com/watch?v=TecU2RM61UY&index=2&list=PLSuKjujFoGJ3xqSJHnZUR-INEO71t1znq
+       -->
+        <script  src="dist/fullcalendar/moment.min.js" ></script>
+        <script src="dist/fullcalendar/fullcalendar.min.js" ></script>
+        <script src="dist/fullcalendar/es.js" ></script>
+      <?php 
+    }
+ ?>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -89,8 +112,10 @@ to get the desired effect
      require_once("pages/static/nav.php");
     require_once("pages/static/menu_nav_aside.php");
     if ($deAlta != 0) {
+      
+
       if ( (!isset($_GET["v-config"]) && !isset($_GET["view"])) || @$_GET["view"]=="Agenda") {
-        require_once("pages/volatil/admin/agenda.php");
+        require_once("pages/volatil/admin/agenda/agenda.php");
       }else if (@$_GET["v-config"]=="Mi-Clínica") {
         include("pages/volatil/pages_config/config_consultorio.php");
       }else if (@$_GET["v-config"]=="LicenciaDentad") {
@@ -123,10 +148,8 @@ to get the desired effect
   
   <!-- /.control-sidebar -->
 
-<!-- REQUIRED SCRIPTS -->
 
 
-<script src="plugins/jquery/jquery.js"></script>
 <!-- Bootstrap 4 -->
 
 <!-- DataTables -->
@@ -148,7 +171,6 @@ to get the desired effect
 
  
 </script>
-
 
 
 
