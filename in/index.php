@@ -24,7 +24,7 @@ $super_clinica = new Clinica();
 $super_pacientes = new pacientes();
 $super_colaboradores = new colaboradores();
 $super_fecha = new fecha();
-$super_agenda = new Agenda();
+$super_agenda = new Agenda(); 
 
 if (!isset($_SESSION["_user_log"])) 
   {
@@ -75,6 +75,8 @@ if (isset($_GET["ds"]/*DestroySession*/)) {
         TUTORIAL EN YOUTUBE DE CALENDAR:
         https://www.youtube.com/watch?v=TecU2RM61UY&index=2&list=PLSuKjujFoGJ3xqSJHnZUR-INEO71t1znq
        -->
+        
+        
         <script  src="dist/fullcalendar/moment.min.js" ></script>
         <script src="dist/fullcalendar/fullcalendar.min.js" ></script>
         <script src="dist/fullcalendar/es.js" ></script>
@@ -111,7 +113,7 @@ to get the desired effect
     
      require_once("pages/static/nav.php");
     require_once("pages/static/menu_nav_aside.php");
-    if ($deAlta != 0) {
+    if ($deAlta != 0) { /// SI YA ESTÁ DE ALTA
       
 
       if ( (!isset($_GET["v-config"]) && !isset($_GET["view"])) || @$_GET["view"]=="Agenda") {
@@ -122,17 +124,30 @@ to get the desired effect
         include("pages/volatil/pages_config/LicenciaDentad.php");
       }else if (@$_GET["view"]=="Todos-mis-pacientes") {
         include("pages/volatil/pacientes/todos-los-pacientes.php");
+      }else if (@$_GET["view"]=="AgendarCita") {
+        include("pages/volatil/admin/agenda/AgendarCita.php");
+      }else if (@$_GET["view"]=="paciente") {
+        include("pages/volatil/pacientes/info_y_opciones_de_un_paciente.php");
+      }else if (@$_GET["view"]=="ModificarCita") {
+        include("pages/volatil/admin/agenda/ModificarCita.php");
+      }else if (@$_GET["view"]=="EliminarCita") {
+        include("pages/volatil/admin/agenda/EliminarCita.php");
       }
     }else
     {
       //require_once("pages/volatil/user-no-de-alta/pagina-de-configuracion.php");
+      
 
-      if (@$_GET["v-config"]=="Activar-cuenta" || !isset($_GET["v-config"])) {
+      if (@$_GET["v-config"]=="Activar-cuenta" || ( !isset($_GET["v-config"]) && !isset($_GET["view"]) ) ) {
         include("pages/volatil/user-no-de-alta/activar-cuenta.php");
       }else if (@$_GET["v-config"]=="Mi-Clínica") {
         include("pages/volatil/pages_config/config_consultorio.php");
       }else if (@$_GET["v-config"]=="LicenciaDentad") {
         include("pages/volatil/pages_config/LicenciaDentad.php");
+      }else if (@$_GET["view"]=="Agenda") {
+        require_once("pages/volatil/admin/agenda/agenda.php");
+      }else if (@$_GET["view"]=="Todos-mis-pacientes") {
+        include("pages/volatil/pacientes/todos-los-pacientes.php");
       }
     }
     require_once("pages/static/footer.php");
@@ -150,8 +165,8 @@ to get the desired effect
 
 
 
-<!-- Bootstrap 4 -->
-
+<!-- select con buscador -->
+<script src="plugins/select2/select2.full.min.js"></script>
 <!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap4.js"></script>
@@ -194,6 +209,9 @@ to get the desired effect
    
 </script>
 
+
+
+
 <!-- OPTIONAL SCRIPTS -->
 <!--script src="plugins/chart.js/Chart.min.js"></script>
 <script src="dist/js/demo.js"></script>
@@ -208,7 +226,7 @@ to get the desired effect
 
 <!-- VUE Y AXIOS OBJETOS REQUIREDS-->
 <?php 
-    if (@$_GET["v-config"]=="Activar-cuenta") {
+    if (@$_GET["v-config"]=="Activar-cuenta" || (!isset($_GET["view"]) && !isset($_GET["v-config"]))) {
       ?> <script src="Config/js/activar-cuenta.js"></script><?php 
     }
 
@@ -218,6 +236,22 @@ to get the desired effect
 
     if (@$_GET["view"]=="Todos-mis-pacientes") {
       ?>  <script src="Config/js/Pacientes.js" ></script> <?php 
+    }
+
+    if (@$_GET["view"]=="AgendarCita") {
+      ?>  <script src="Config/js/AgendarCita.js" ></script> <?php 
+    }
+
+    if (@$_GET["view"]=="ModificarCita") {
+      ?><script src="Config/js/ModificarCita.js"></script> <?php 
+    }
+
+    if (@$_GET["view"]=="EliminarCita") {
+      ?><script src="Config/js/EliminarCita.js"></script> <?php 
+    }
+
+    if (@$_GET["view"]=="paciente") {
+      ?><script src="Config/js/paciente_info.js"></script> <?php 
     }
  ?>
 

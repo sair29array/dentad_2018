@@ -10,6 +10,14 @@ RewriteRule ^(LicenciaDentad)$ index.php?v-config=$1
 
 RewriteRule ^(Agenda)$ index.php?view=$1
 RewriteRule ^(Todos-mis-pacientes)$ index.php?view=$1
+RewriteRule ^(paciente)$ index.php?view=$1
+RewriteRule ^adm/(paciente)$/(.*)$ index.php?view=$1&id=$2 [L]
+
+RewriteRule ^(Colaboradores)$ index.php?view=$1
+
+
+
+
 
 
 

@@ -76,7 +76,24 @@
 			{
 				include("../Config/conexion.php");
 				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where id_clinica = '$id_clinica' ORDER BY id DESC " );
-				return $consult_;
+				return mysqli_fetch_all($consult_, MYSQLI_ASSOC);
+			}
+
+
+
+			public function GetPacienteID($id_paciente)
+			{
+				include("../../../Config/conexion.php");
+				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where id = '$id_paciente' " );
+				return mysqli_fetch_all($consult_, MYSQLI_ASSOC);
+			}
+
+			public function GetPacienteNumID($nID)
+			{
+				// traer un paciente con el numero de identidad
+				include("../Config/conexion.php");
+				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where num_identidad = '$nID' " );
+				return mysqli_fetch_all($consult_, MYSQLI_ASSOC);
 			}
 		}
  ?>

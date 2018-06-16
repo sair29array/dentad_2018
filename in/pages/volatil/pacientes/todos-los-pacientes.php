@@ -22,7 +22,7 @@
                 if ($isset_Clinica == 0) {
                     ?>
                     <div class="col-sm-12">
-            <div class="alert alert-warning alert-dismissable col-sm-12">
+            <div class="alert alert-info alert-dismissable col-sm-12">
               <i class="fa fa-warning"></i>
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <b><a href="./Mi-Clínica">¿No tienes una clínica?</a>, </b> Configura tu clínica y podrás registrar pacientes de forma ilimitada.
@@ -233,7 +233,7 @@
                                 <tr>
                                     <td>
                                         <i class="fa fa-user"></i>
-                                        <a href="./paciente?id=<?php echo $paciente_["num_identidad"]; ?>" style="color: black">
+                                        <a href="./?view=paciente&id=<?php echo $paciente_["num_identidad"]; ?>" style="color: black">
                                             <?php 
                                         echo "#". $paciente_["id"] .  $paciente_["tipo_identidad"].": ".$paciente_["num_identidad"] ;
                                         ?>
@@ -241,7 +241,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="./paciente?id=<?php echo $paciente_["num_identidad"]; ?>" style="color: black">
+                                        <a href="./?view=paciente&id=<?php echo $paciente_["num_identidad"]; ?>" style="color: black">
                                         <?php  
                                         echo $paciente_["nombres"]. " ". $paciente_["apellidos"]; 
                                         ?>

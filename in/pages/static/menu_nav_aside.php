@@ -33,6 +33,8 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
           <?php 
             if ($deAlta == 0) 
             {
+
+
               ?>
               <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link ">
@@ -47,7 +49,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                 if ($iuser["cuenta_activa"] == 0) 
                 {
                   ?><li class="nav-item">
-                    <a href="./Activar-cuenta" class="nav-link <?php if(@$_GET["v-config"]=='Activar-cuenta' || !isset($_GET["v-config"])){?> active <?php } ?>" >
+                    <a href="./Activar-cuenta" class="nav-link <?php if((@$_GET["v-config"]=='Activar-cuenta' || !isset($_GET["v-config"])) && !isset($_GET["view"]) ){?> active <?php } ?>" >
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>Activa tu cuenta</p>
                     </a>
@@ -68,12 +70,24 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               </li>
             </ul>
           </li>
+
+
+          <li class="nav-item">
+            <a href="./Agenda" class="nav-link <?php if(@$_GET["view"]=="Agenda"){?> active <?php  } ?> ">
+              <i class="nav-icon fa fa-calendar-alt"></i>
+              <p>
+                Agenda
+                <!--span class="right badge badge-danger">Nuevo</span-->
+              </p>
+            </a>
+          </li>
               <?php 
             }
 
-            
-           ?>
-          <li class="nav-item">
+
+            if ($deAlta!= 0) {
+                          ?>
+                           <li class="nav-item">
             <a href="./Agenda" class="nav-link <?php if((!isset($_GET["v-config"]) && !isset($_GET["view"])) || @$_GET["view"]=="Agenda"){?> active <?php  } ?> ">
               <i class="nav-icon fa fa-calendar-alt"></i>
               <p>
@@ -82,6 +96,10 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               </p>
             </a>
           </li>
+                          <?php 
+                        }            
+           ?>
+         
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
@@ -124,19 +142,19 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General Elements</p>
+                  <p>Ingresos </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/forms/advanced.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Advanced Elements</p>
+                  <p>Egresos </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Editors</p>
+                  <p>General</p>
                 </a>
               </li>
             </ul>
@@ -178,7 +196,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Mi-Clínica" class="nav-link <?php if($_GET["v-config"]=='Mi-Clínica'){?> active <?php } ?>">
+                <a href="./Colaboradores" class="nav-link <?php if($_GET["view"]=='Colaboradores'){?> active <?php } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Colaboradores</p>
                 </a>
@@ -194,8 +212,17 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               <?php 
           }
          ?>
-          
+          <li class="nav-item">
+            <a href="./Agenda" class="nav-link <?php if(@$_GET["view"]=="Papelera"){?> active <?php  } ?> ">
+              <i class="nav-icon fa fa-trash-alt"></i>
+              <p>
+               Papelera
+                <!--span class="right badge badge-danger">Nuevo</span-->
+              </p>
+            </a>
+          </li>
         </ul>
+         
       </nav>
       <!-- /.sidebar-menu -->
     </div>

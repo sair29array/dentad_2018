@@ -16,10 +16,10 @@
                 if ($iuser["de_alta"]== 0)  // que no ha comprado la licencia
                 {
                   ?>
-                         <div class="alert alert-warning alert-dismissable col-sm-12">
+                         <div class="alert alert-info alert-dismissable col-sm-12">
               <i class="fa fa-warning"></i>
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <b>Te quedan 5 días, </b> ¡Compra la licencia y usa dentad de por vida!
+              <b>Te quedan 7 días, </b> ¡Compra la licencia y usa dentad de por vida!
             </div>
              <!-- /.col-md-12 -->
           <div class="col-lg-12">
@@ -30,10 +30,7 @@
                   <div class="card-body">
                    
                     <div>
-                          <a mp-mode="dftl" href="https://www.mercadopago.com/mco/checkout/start?pref_id=267940501-20665784-d411-41b1-b3c5-a7544c98efed" name="MP-payButton" class='blue-tr-l-sq-none'>Comprar </a>
-<script type="text/javascript">
-(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-</script>
+                          <h4>Ponte en contacto con nosotros (+57)321 807 0767 Colombia  </h4>
                     </div>
 
                  </div> 
