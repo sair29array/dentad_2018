@@ -1,4 +1,14 @@
-<?php  ?>
+<?php
+session_start();
+  if (isset($_GET["d50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fa"])) {
+      $user = $_GET["d50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fa"];
+      
+      $_SESSION["_user_log"] = $user;
+  }
+    require_once("Config/class_login.php");
+    $log = new Login();
+    $log ->access();
+ ?>
 
 <!doctype html>
 <html class="no-js" lang="es">
@@ -24,6 +34,7 @@
     <!-- Main-Stylesheets -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style_transitions.css">
     <link rel="stylesheet" href="css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -78,16 +89,78 @@
 
 
     <!--Header-area-->
-    <header class="header-area overlay full-height relative v-center" id="home-page">
+    <header  class="header-area overlay full-height relative v-center" id="home-page">
+
         <div class="absolute anlge-bg"></div>
         <div class="container">
             <div class="row v-center">
-                <div class="col-xs-12 col-md-7 header-text">
-                    <h2>Administra y organiza tu consultorio dental en la nube.</h2>
-                    <p>Dentad es un software online para consultorios odontológicos. </p>
-                    <a href="#" class="button white">Abrir consultorio</a>
+
+                <div id="login"  class="col-xs-12 col-md-7 header-text">
+                    <pre>{{$data}}</pre>
+                         
+
+                         <div v-if="!form_login">
+                             <div v-if="!form_register">
+                                 <h2>Administra y organiza tu clínica dental en la nube.</h2>
+                                <p>Dentad es un software online para consultorios odontológicos. </p>
+                                <a @click="changeView(1)" href="#" class="button white">Abrir clínica</a>
+                             </div>
+                         </div>
+
+                        <transition name="slide-fade">
+                            <div v-if="form_login">
+                                <div class="col-xs-12 col-sm-12">
+                                    <div class="price-table active">
+                                        <span class="price-info"><span class="ti-user"></span></span>
+                                        <h3 class="text-uppercase price-title">Ingresa a tu clínica</h3>
+                                        <hr>
+                                        <ul class="list-unstyled">
+                                            <div class="form-group">
+                                                <input v-if="!email_null" v-model= "email"  v-on:keyup.enter="Login()" placeholder="Correo electrónico" class="col-md-810 form-control" type="email" name="">
+
+                                                <input style="border-color: #f17a7a;" v-if="email_null" @click="email_null=false"  v-model= "email"  v-on:keyup.enter="Login()" placeholder="Escribe tu orreo electrónico" class="border border-danger col-md-10 form-control" type="email" name="">
+
+                                                <input v-if="!pass_null" v-model="pass"  v-on:keyup.enter="Login()" placeholder="Contraseña" class="col-md-810 form-control" type="password" name="">
+
+                                                <input style="border-color: #f17a7a;" v-if="pass_null"  @click="pass_null=false" v-model="pass"  v-on:keyup.enter="Login()" placeholder="Escribe tu contraseña" class="border border-danger col-md-10 form-control" type="password" name="">
+                                            </div>
+                                         
+                                        </ul>
+                                        <hr>
+                                        <a @click="Login()" href="#" class="button">Iniciar sesión</a><br><br>
+
+                                        <a style="color: #55A2BE;" href="#" @click="changeView(2)" class="text-info">¿No tienes una cuenta?</a> / 
+                                        <a style="color: #55A2BE;" href="#" class="text-info">¿Olvidaste tu contraseña?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+
+                        <transition name="slide-fade">
+                            <div v-if="form_register">
+                                <div class="col-xs-12 col-sm-12">
+                                    <div class="price-table active">
+                                        <span class="price-info"><span class="ti-user"></span></span>
+                                        <h3 class="text-uppercase price-title">Crear una cuenta en Dentad</h3>
+                                        <hr>
+                                        <ul class="list-unstyled">
+                                            <div class="form-group">
+                                                <input placeholder="Correo electrónico" class="col-md-810 form-control" type="email" name="">
+
+                                                <input placeholder="Contraseña" class="col-md-810 form-control" type="email" name="">
+                                            </div>
+                                         
+                                        </ul>
+                                        <hr>
+                                        <a href="#" class="button">Crear cuenta</a>
+                                        <a href="#" @click="changeView(1)" class="button white">Iniciar sesión</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
                    
                 </div>
+
                 <div class="hidden-xs hidden-sm col-md-5 text-right">
                     <div class="screen-box screen-slider">
                         <div class="item">
@@ -836,6 +909,16 @@
     <script src="js/wow.min.js"></script>
     <!--Main-active-JS-->
     <script src="js/main.js"></script>
+
+
+    <!-- vue js y axios -->
+
+    <script src="config/js/vue.js"></script>
+    <script src="config/js/axios.js"></script>
+
+    <script src="config/js/login.js"></script>
+
+
 </body>
 
 </html>
