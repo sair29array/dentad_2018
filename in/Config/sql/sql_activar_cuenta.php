@@ -19,10 +19,11 @@ if ($action == 'read')
   /*  $respuesta = mysqli_query($conn, "SELECT count(*) FROM usuarios where email = '$l'  and pass = '$p' ");*/
 
   $super_acount = new  config_acount();
-  $super_acount -> send_mail_activation($e);
+  $r = $super_acount -> send_mail_activation($e);
 	 
 
      $res['resul']=1;
+     $res["ok"] = $r;
 	 
 
 	
