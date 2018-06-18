@@ -53,8 +53,8 @@
 		public function register_user($n,$e,$p)
 		{
 			include("../conexion.php");
-
-		$consulta = mysqli_query($conn, "INSERT INTO usuarios (nombre,email,pass)  VALUES ('$n','$e','$p')");
+			$f = date("d-m-Y");
+		$consulta = mysqli_query($conn, "INSERT INTO usuarios (nombre,email,pass,fecha_de_registro)  VALUES ('$n','$e','$p','$f')");
 		/////////////////ENVIAR LINK DE ACTIVACIÓN DE CUENTA /////////////
 
                 /*$username = $nombres. " " . $apellidos;

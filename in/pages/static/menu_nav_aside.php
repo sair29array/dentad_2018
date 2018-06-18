@@ -8,7 +8,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
 <aside  class="main-sidebar sidebar-dark-info elevation-4">
     <!-- Brand Logo -->
     <a href="./" class="brand-link">
-      <img src="../img/favicon.png" alt="Dentad logo" class="brand-image  ">
+      <img src="dist/img/logodentad.png" alt="Dentad logo" class="brand-image  ">
       <h3 class=" font-weight-light profile-username "><b>
         <?php if ($isset_Clinica == 0) {
          echo "Dentad";

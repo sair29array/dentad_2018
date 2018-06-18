@@ -14,7 +14,7 @@
 			{
 				$name_user = $data_user["nombre"];
 				/////////////////ENVIAR LINK DE ACTIVACIÓN DE CUENTA /////////////
-
+                        }
                 
                 $link_activacion_dealta = "https://www.dentad.com/in/?981129=()//Sa9711&activate=".$email;
                 $destino = $email;
@@ -35,9 +35,41 @@
                 $cabeceras .= 'From: Dentad <info@dentad.com>';
                 mail($destino,$titulo,$contenido,$cabeceras);
 		 
-			}
+			
 		}
 	}
+
+
+
+
+
+
+
+
+                        /////////////////ENVIAR LINK DE ACTIVACIÓN DE CUENTA /////////////
+
+                /*$username = $nombres. " " . $apellidos;
+                $link_activacion_dealta = "https://www.array.com.co/?activate&981129()//array_user-act=".$email;
+                $destino = $email;
+                $titulo = "Activa tu cuenta de array para empezar a trabajar";
+                
+                $contenido = '<html>'.
+                '<head><title>Te damos la bienvenida a ARRAY | abre el siguiente enlace para activar tu cuenta.</title></head>'.
+                '<body><h3> Te damos la bienvenida a ARRAY | abre el siguiente enlace para activar tu cuenta.</h3> <br>'.
+                '<body><h3> Usuario: '.$username.'</h3> <br>'.
+                '<body><h3>'.$link_activacion_dealta.'</h3>'.
+                
+                '<hr>'.
+                'Array | Expertos en TIC | www.array.com.co'.
+                '</body>'.
+                '</html>';
+                $cabeceras = 'MIME-Version: 1.0' . "\r\n";
+                $cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+                $cabeceras .= 'From: ARRAY <contacto@array.com.co>';
+                mail($destino,$titulo,$contenido,$cabeceras);*/
+
+
+
 
 
  ?>
