@@ -144,8 +144,13 @@ session_start();
                                          
                                         </ul>
                                         <hr>
+                                       <div v-if="!loading">
                                         <div v-if="!message_exito_login">
                                             <a  @click="Login()" href="#" class="button">Iniciar sesión</a>
+                                        </div>
+                                       </div>
+                                        <div v-if="loading" >
+                                             <a @click="Login()" href="#" class="button">Cargando...</a>
                                         </div>
                                         <div v-if="message_exito_login" >
                                              <a @click="Login()" href="#" class="button">Cargando...</a>

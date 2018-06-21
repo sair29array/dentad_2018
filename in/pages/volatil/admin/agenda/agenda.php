@@ -31,7 +31,7 @@
     		},
 
     		
-    	    events: "http://gigantesconfuturo.hol.es/in/Config/sql/sql_get_array_de_citas.php?id_clinica="+id_clinica_,
+    	    events: "http://dentad.online/in/Config/sql/sql_get_array_de_citas.php?id_clinica="+id_clinica_,
 
     		eventClick:function(calEvent,jsEvent,view){
     			

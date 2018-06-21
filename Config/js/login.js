@@ -12,6 +12,7 @@ var app = new Vue({
     email_null: false,
     pass_null: false,
     message_exito_login: false,
+    loading: false,
 
 
     // Register //
@@ -46,8 +47,9 @@ var app = new Vue({
 
   		Login()
   		{
-  			if (this.email == "") {this.email_null = true;}
-  			if (this.pass == "" ) {this.pass_null = true;}
+        this.loading = true;
+  			if (this.email == "") {this.email_null = true; this.loading = false;}
+  			if (this.pass == "" ) {this.pass_null = true; this.loading = false;}
 
   			// -----------//
   			if (this.email_null == false && this.pass_null == false) 
@@ -65,11 +67,13 @@ var app = new Vue({
                       
               if (datos.resul == 1 )
                 {
+                app.loading = false;
                  app.message_exito_login = true ;
                  window.location="./?d50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fad50eaec9ae6a5169acf029ef84a171fa="+datos.resultt;
                 }else if (datos.resul == 0) 
                 {
-                  app.message = "Datos incorrectos"
+                  app.loading = false;
+                  app.message = "Datos incorrectos";
                 }
               
                                       
