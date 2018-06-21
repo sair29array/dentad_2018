@@ -14,6 +14,10 @@ $fecha_actual = $super_fecha ->GetFechaActual();
 $user = $useR->GetDatosUsuarioID($_SESSION["_user_log"]); // admin
 foreach ($user as $iuser) {}
 
+
+// ESTADO DE LA CUENTA:
+  $cuenta_activa = $useR -> EstadoDeLacuenta($_SESSION["_user_log"]);
+
 // acontinuacion nombrare a ciewrtas cvariables porque es necesaario que siempre esten listas para cualquier operacion ya sea desde js o php, y lo hago en este archivo debido a que es este unos de los que se mantiene presente en cada paginacion
 
 $nombre_clinica = "";
@@ -41,6 +45,8 @@ if ($isset_Clinica != 0) // quiere decir que el user si tiene ina clinica yua re
 }
 
 
+///// colaboradores  o asistentes
+$num_Asistentes = $super_colaboradores->GetNumeroColaboradoresIdUSer($iuser["id"]);
 
 
 
@@ -56,6 +62,7 @@ if ($isset_Clinica != 0) // quiere decir que el user si tiene ina clinica yua re
   var nombre_clinica_DB = "<?php echo $nombre_clinica ?>";
   var ubicacion_clinica_DB = "<?php echo $ubicacion_clinica ?>";
   var id_clinica = "<?php echo $id_clinica ?>";
+  var num_Asistentes = "<?php echo $num_Asistentes ?>";
 </script>
 <!-- Navbar -->
   <nav  class="  main-header navbar navbar-expand bg-white navbar-light border-bottom">

@@ -9,6 +9,40 @@
 	<div class="row">
 		<div class="col-12">
 			
+			<?php 
+		if ($isset_Clinica  != 0) 
+			//////si existe una clinica registrada a nombre del user:
+		{
+			
+			$num_pacientes = 0;
+			foreach ($pacientes_DB as $num) {
+				$num_pacientes ++;
+			}
+			if ($num_pacientes == 0) 
+			{
+				?>
+				<div class="col-sm-12">
+            <div class="alert alert-info alert-dismissable col-sm-12">
+              <i class="fa fa-warning"></i>
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <b>¡Vaya!, </b> Aún no tienes pacientes registrados en tu clínica. Para agendar citas <a href="./Todos-mis-pacientes">necesitas pacientes</a>.
+            </div>
+        </div>
+				<?php 
+			}
+		}else // si no tiene una clinica
+		{
+				?>
+				<div class="col-sm-12">
+            <div class="alert alert-info alert-dismissable col-sm-12">
+              <i class="fa fa-warning"></i>
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <b>¡Vaya!, </b> Aún no has configurado tu clínica. Para agendar citas debes <a href="./Mi-Clínica">configurar tu clínica</a> y tener pacientes.
+            </div>
+        </div>
+				<?php 
+		}
+			 ?>
 				<!-- Modal para agendar  citas -->
 		<div class="" id="ModalAgendarCitas" tabindex="-1"  >
 		  <div class="modal-dialog">

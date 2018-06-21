@@ -1,4 +1,4 @@
-<?php if ($iuser["cuenta_activa"] != 0) {
+<?php if ($cuenta_activa  != 0) {
   ?><script>window.location="./Mi-Clínica";</script><?php 
 } ?>
  <!-- Content Wrapper. Contains page content -->

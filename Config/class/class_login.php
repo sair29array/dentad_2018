@@ -50,19 +50,19 @@
 		}
 
 
-		public function register_user($n,$e,$p)
+		public function register_user($n,$e,$p,$fechaExpire)
 		{
 			include("../conexion.php");
 			$f = date("d-m-Y");
-		$consulta = mysqli_query($conn, "INSERT INTO usuarios (nombre,email,pass,fecha_de_registro)  VALUES ('$n','$e','$p','$f')");
+		$consulta = mysqli_query($conn, "INSERT INTO usuarios (nombre,email,pass,fecha_de_registro, fechaExpire)  VALUES ('$n','$e','$p','$f','$fechaExpire')");
 		/////////////////ENVIAR LINK DE ACTIVACIÓN DE CUENTA /////////////
- 						$link_activacion_dealta = "https://www.dentad.online/in/?981129=()//Sa9711&activate=".$email;
-                        $destino = $email;
+ 						$link_activacion_dealta = "https://www.dentad.online/in/?981129=()//Sa9711&activate=".$e;
+                        $destino = $e;
                         $titulo = "Hola, activa tu cuenta de Dentad para empezar a trabajar";
                         
                         $contenido =  '<html>'.
                         '<head><title>Dentad te da la bienvenida...</title></head>'.
-                        '<body><h1>'.$name_user.' ¡Es momento de activar tu cuenta!</h1>'.
+                        '<body><h1>'.$n.' ¡Es momento de activar tu cuenta!</h1>'.
                         'Haz clic en este enlace:'.$link_activacion_dealta.
                         '<hr>'.
                         'Array | Expertos en TIC, www.array.com.co'.

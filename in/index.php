@@ -35,9 +35,24 @@ if (!isset($_SESSION["_user_log"]))
 
 
 }
+
+/// verificar si la versión de prueba o demostración gratuita de 7 dias venció///
+  $useR->VerificarExpiracionDeLaDemostracionGRatis($_SESSION["_user_log"]);
+////////////////////////////////////////////////////////////////////////////////
+
 if (isset($_GET["ds"]/*DestroySession*/)) {
     $useR ->destroy_session();
 }
+
+
+/// ACTIVAR CUENTA
+if (isset($_GET["activate"])) {
+  $useR->ActivateAccount($_GET["activate"]);
+}
+
+
+////// saber la fecha de expiracion de la demostración :
+$fechaExpire = $useR -> fechaExpire($_SESSION["_user_log"]);
  
  ?>
 
@@ -103,7 +118,7 @@ to get the desired effect
             <div class="sk-cube4 sk-cube"></div>
             <div class="sk-cube3 sk-cube"></div>
         </div>
-    </div>
+    </div >
 <div class="wrapper">
   
 
@@ -132,6 +147,12 @@ to get the desired effect
         include("pages/volatil/admin/agenda/ModificarCita.php");
       }else if (@$_GET["view"]=="EliminarCita") {
         include("pages/volatil/admin/agenda/EliminarCita.php");
+      }else if (@$_GET["view"]=="cuenta-activa") {
+        include("pages/volatil/cuenta-activa.php");
+      }else if (@$_GET["view"]=="Colaboradores") {
+        include("pages/volatil/pages_config/Colaboradores.php");
+      }else if (@$_GET["view"]=="Odontograma") {
+        include("pages/volatil/Odontograma.php");
       }
     }else
     {
@@ -148,6 +169,14 @@ to get the desired effect
         require_once("pages/volatil/admin/agenda/agenda.php");
       }else if (@$_GET["view"]=="Todos-mis-pacientes") {
         include("pages/volatil/pacientes/todos-los-pacientes.php");
+      }else if (@$_GET["view"]=="cuenta-activa") {
+        include("pages/volatil/cuenta-activa.php");
+      }else if (@$_GET["view"]=="AgendarCita") {
+        include("pages/volatil/admin/agenda/AgendarCita.php");
+      }else if (@$_GET["view"]=="Colaboradores") {
+        include("pages/volatil/pages_config/Colaboradores.php");
+      }else if (@$_GET["view"]=="Odontograma") {
+        include("pages/volatil/Odontograma.php");
       }
     }
     require_once("pages/static/footer.php");
@@ -252,6 +281,10 @@ to get the desired effect
 
     if (@$_GET["view"]=="paciente") {
       ?><script src="Config/js/paciente_info.js"></script> <?php 
+    }
+
+    if (@$_GET["view"]=="Colaboradores") {
+      ?><script src="Config/js/Colaboradores.js"></script> <?php 
     }
  ?>
 

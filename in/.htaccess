@@ -16,6 +16,10 @@ RewriteRule ^adm/(paciente)$/(.*)$ index.php?view=$1&id=$2 [L]
 RewriteRule ^(Colaboradores)$ index.php?view=$1
 
 
+RewriteRule ^(Odontograma)$ index.php?view=$1
+
+
+
 
 
 

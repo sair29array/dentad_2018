@@ -30,6 +30,46 @@
 
 
 			}
+
+
+
+			public function GetInfoAsistentes($id_clinica)
+			{
+				 include("../Config/conexion.php");
+				   $consult = mysqli_query($conn, "SELECT * FROM colaboradores where id_clinica = '$id_clinica' ");
+				   return $consult;
+			}
+
+
+
+
+			public function VerificarSiExisteUnColaborador_email($email_user)
+			{
+				include("../../../Config/conexion.php");
+				$consult_ = mysqli_query($conn, "SELECT * FROM colaboradores where email = '$email_user' ");
+				$colaboradores = 0; // esta variable indica si existe o no el paciente
+				foreach ($consult_ as $u) {
+					$colaboradores++;
+				}
+
+				if ($colaboradores == 0) {
+					return 1;
+				}else 
+				{
+					return 0;
+				}
+			}
+
+
+
+
+			public function RegistrarNuevoColaborador($id_clinica, $name_user, $email_user, $pass)
+			{
+				
+				include("../../../Config/conexion.php");
+			    $consulta = mysqli_query($conn, "INSERT INTO colaboradores (id_clinica, nombre, email, pass )  VALUES ('$id_clinica', '$name_user', '$email_user', '$pass')");
+			}
+
 		}
 
  ?>

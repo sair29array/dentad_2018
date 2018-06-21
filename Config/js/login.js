@@ -1,6 +1,7 @@
 var app = new Vue({
   el: '#login',
   data: {
+    fechaExpire : fechaExpire,
     message: false,
     form_login: false,
     form_register: false,
@@ -96,6 +97,7 @@ var app = new Vue({
               formData.append('name_register', this.name_register);
               formData.append('email_register', this.email_register);
               formData.append('pass_register', this.pass_register);
+              formData.append('fechaExpire', this.fechaExpire);
                       axios.post("Config/sql/register_new_user.php?action=read",formData)
                               .then(function(response) {
                   

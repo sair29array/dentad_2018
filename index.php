@@ -8,8 +8,24 @@ session_start();
     require_once("Config/class/class_login.php");
     $log = new Login();
     $log ->access();
- ?>
 
+
+    /// --- CARBON PHP/// 
+
+    require_once("in/Config/vendor/autoload.php");
+    use Carbon\Carbon;
+    date_default_timezone_set("America/Bogota");
+    Carbon::setLocale("es");
+
+    $fechaActual = new Carbon(date("d-m-Y"));
+    // si una persona se registra, aqui se calcula la fecha en que expira
+    $f = $fechaActual ->addDay(7);
+   $fechaExpire =  substr($f, 0, 10 );
+
+ ?>
+<script>
+    var fechaExpire = "<?php echo $fechaExpire ?>";
+</script>
 <!doctype html>
 <html class="no-js" lang="es">
 

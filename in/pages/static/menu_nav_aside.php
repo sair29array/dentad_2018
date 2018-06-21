@@ -46,7 +46,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
             </a>
             <ul class="nav nav-treeview">
               <?php 
-                if ($iuser["cuenta_activa"] == 0) 
+                if ($cuenta_activa == 0) 
                 {
                   ?><li class="nav-item">
                     <a href="./Activar-cuenta" class="nav-link <?php if((@$_GET["v-config"]=='Activar-cuenta' || !isset($_GET["v-config"])) && !isset($_GET["view"]) ){?> active <?php } ?>" >
@@ -73,7 +73,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
 
 
           <li class="nav-item">
-            <a href="./Agenda" class="nav-link <?php if(@$_GET["view"]=="Agenda"){?> active <?php  } ?> ">
+            <a href="./Agenda" class="nav-link <?php if(@$_GET["view"]=="Agenda" || @$_GET["view"]=="AgendarCita"){?> active <?php  } ?> ">
               <i class="nav-icon fa fa-calendar-alt"></i>
               <p>
                 Agenda
@@ -88,7 +88,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
             if ($deAlta!= 0) {
                           ?>
                            <li class="nav-item">
-            <a href="./Agenda" class="nav-link <?php if((!isset($_GET["v-config"]) && !isset($_GET["view"])) || @$_GET["view"]=="Agenda"){?> active <?php  } ?> ">
+            <a href="./Agenda" class="nav-link <?php if((!isset($_GET["v-config"]) && !isset($_GET["view"])) || @$_GET["view"]=="Agenda" || @$_GET["view"]=="AgendarCita"){?> active <?php  } ?> ">
               <i class="nav-icon fa fa-calendar-alt"></i>
               <p>
                 Agenda
@@ -116,7 +116,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="./Odontograma" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Odontograma</p>
                 </a>
@@ -164,10 +164,10 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
           if ($deAlta == 0) {
             ?>
                <li class="nav-item">
-                <a href="pages/widgets.html" class="nav-link">
+                <a href="./Colaboradores" class="nav-link <?php if(@$_GET["view"]=="Colaboradores"){?> active <?php } ?>">
                   <i class="nav-icon fa fa-users-cog"></i>
                   <p>
-                    Colaboradores
+                    Asistentes
                     
                   </p>
                 </a>
@@ -198,7 +198,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               <li class="nav-item">
                 <a href="./Colaboradores" class="nav-link <?php if($_GET["view"]=='Colaboradores'){?> active <?php } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Colaboradores</p>
+                  <p>Asistentes</p>
                 </a>
               </li>
               <li class="nav-item">

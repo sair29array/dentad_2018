@@ -1,6 +1,9 @@
-<?php if ($iuser["de_alta"] != 0) {
-  
-} ?>
+<?php if ($deAlta == 0) {} 
+use Carbon\Carbon;
+$fecha_de_expiración_cuenta_gratuita = new Carbon($fechaExpire);
+$dias_restantes = $fecha_de_expiración_cuenta_gratuita -> diffForHumans();
+
+?>
  <!-- Content Wrapper. Contains page content -->
   <div id="activar-cuenta" class="content-wrapper">
 
@@ -13,13 +16,13 @@
         <div class="row mb-2">
             <?php 
 
-                if ($iuser["de_alta"]== 0)  // que no ha comprado la licencia
+                if ($deAlta == 0)  // que no ha comprado la licencia
                 {
                   ?>
                          <div class="alert alert-info alert-dismissable col-sm-12">
               <i class="fa fa-warning"></i>
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <b>Te quedan 7 días, </b> ¡Compra la licencia y usa dentad de por vida!
+              <b>Esta demostración expira <?php echo $dias_restantes; ?>, </b> ¡Compra la licencia y usa dentad de por vida!
             </div>
              <!-- /.col-md-12 -->
           <div class="col-lg-12">

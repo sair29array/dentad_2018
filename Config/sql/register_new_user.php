@@ -19,6 +19,7 @@ if ($action == 'read')
      $nombres = $_POST["name_register"];
 	 $pass = $_POST["pass_register"];
 	 $email = $_POST["email_register"];
+	 $fechaExpire = $_POST["fechaExpire"];
 	
 
 
@@ -42,7 +43,7 @@ if ($action == 'read')
   	  $r = $res['resul'];
 	  if ($r == 1) 
 	  {	
-	  	$Log -> register_user($nombres,$email,$pass);
+	  	$Log -> register_user($nombres,$email,$pass,$fechaExpire);
 	  	$res['resultt']=$email;
 	  }
 

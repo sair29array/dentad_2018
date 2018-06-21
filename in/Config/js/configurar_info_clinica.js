@@ -41,15 +41,15 @@ var app = new Vue({
   	{
   		guardarInfoClinica()
   		{
-  			if (app.nombre_clinica == '' || app.ubicacion == '') 
+  			if (app.nombre_clinica_a_actualizar == '' || app.ubicacion_clinica_a_actualizar == '') 
   			{
   				this.campos_info_clinica_vacios = true;
   			}else
   			{
   				   // make ajax request and pass the data. I'm not certain how to do it with axios but something along the lines of this
               var formData = new FormData();
-              formData.append('nombre_clinica', app.nombre_clinica);
-              formData.append('ubicacion', app.ubicacion );
+              formData.append('nombre_clinica', app.nombre_clinica_a_actualizar);
+              formData.append('ubicacion', app.ubicacion_clinica_a_actualizar );
               formData.append('id_user', app.id_user );
                       axios.post("Config/sql/sql_guardar_datos_nueva_clinica.php?action=read",formData)
                               .then(function(response) {
