@@ -172,8 +172,19 @@
 			// ahora preguntamos si el correo que se está queriendo actualizar no le pertenece a otro user:
 			
 			$allUser = mysqli_query($conn, "SELECT * FROM usuarios ");
+
+			$allAsistentes = mysqli_query($conn, "SELECT * FROM colaboradores ");
        
 			$ue = 0; //users encontrados
+
+			foreach ($allAsistentes as $uu) 
+			{
+				if ($uu["email"] == $EmailNuevo) // verificamos si el email no está dentro de los colaboradores
+				{
+					$ue++;
+				}
+			}
+
 			foreach ($allUser as $u) 
 			{
 				if ($u["id"] != $id_) // que no verifique con el mismo user
@@ -211,8 +222,19 @@
 			// ahora preguntamos si el correo que se está queriendo actualizar no le pertenece a otro user:
 			
 			$allUser = mysqli_query($conn, "SELECT * FROM usuarios ");
+
+			$allAsistentes = mysqli_query($conn, "SELECT * FROM colaboradores ");
        
 			$ue = 0; //users encontrados
+
+			foreach ($allAsistentes as $uu) 
+			{
+				if ($uu["email"] == $e) // verificamos si el email no está dentro de los colaboradores
+				{
+					$ue++;
+				}
+			}
+
 			foreach ($allUser as $u) 
 			{
 				if ($u["id"] != $id_user) // que no verifique con el mismo user

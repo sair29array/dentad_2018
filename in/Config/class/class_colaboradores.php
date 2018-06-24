@@ -47,8 +47,16 @@
 			{
 				include("../../../Config/conexion.php");
 				$consult_ = mysqli_query($conn, "SELECT * FROM colaboradores where email = '$email_user' ");
+
+				//// vERIFICAMOS TAMBIEN  LA TABLA DE USERS ADMIN
+				$consultt = mysqli_query($conn, "SELECT * FROM usuarios where email = '$email_user' ");
+
 				$colaboradores = 0; // esta variable indica si existe o no el paciente
 				foreach ($consult_ as $u) {
+					$colaboradores++;
+				}
+
+				foreach ($consultt as $uu) {
 					$colaboradores++;
 				}
 
@@ -63,11 +71,37 @@
 
 
 
-			public function RegistrarNuevoColaborador($id_clinica, $name_user, $email_user, $pass)
+			public function RegistrarNuevoColaborador($id_clinica, $name_user, $email_user, $pass,$permiso_ver_pacientes,
+		          $permiso_registrar_pacientes,
+		          $permiso_actualizar_pacientes,
+		          $permiso_eliminar_pacientes,
+		          $permiso_ver_agenda,
+		          $permiso_registrar_en_agenda,
+		          $permiso_actualizar_agenda,
+		          $permiso_eliminar_agenda,
+		          $permiso_ver_reportes,
+		          $permiso_registrar_reportes,
+		          $permiso_actualizar_reportes,
+		          $permiso_eliminar_reportes,
+		          $permiso_ver_configuracion_cuenta,
+		          $permiso_registrar_configuracion_cuenta,
+		          $permiso_actualizar_configuracion_cuenta,
+		          $permiso_eliminar_configuracion_cuenta)
 			{
 				
+
+
 				include("../../../Config/conexion.php");
 			    $consulta = mysqli_query($conn, "INSERT INTO colaboradores (id_clinica, nombre, email, pass )  VALUES ('$id_clinica', '$name_user', '$email_user', '$pass')");
+
+			     $consulta = mysqli_query($conn, "INSERT INTO permiso_agenda_y_control_citas (email_colaborador_asistente, ver, registrar, actualizar, eliminar )  VALUES ('$email_user','$permiso_ver_agenda','$permiso_registrar_en_agenda','$permiso_actualizar_agenda','$permiso_eliminar_agenda')");
+
+			     $consulta = mysqli_query($conn, "INSERT INTO permiso_control_pacientes (email_colaborador_asistente, ver, registrar, actualizar, eliminar )  VALUES ('$email_user','$permiso_ver_pacientes','$permiso_registrar_pacientes','$permiso_actualizar_pacientes','$permiso_eliminar_pacientes')");
+
+			     $consulta = mysqli_query($conn, "INSERT INTO permiso_configuracion_cuenta (email_colaborador_asistente, ver, registrar, actualizar, eliminar )  VALUES ('$email_user','$permiso_ver_configuracion_cuenta','$permiso_registrar_configuracion_cuenta','$permiso_actualizar_configuracion_cuenta','$permiso_eliminar_configuracion_cuenta')");
+
+			     $consulta = mysqli_query($conn, "INSERT INTO permiso_control_reportes (email_colaborador_asistente, ver, registrar, actualizar, eliminar )  VALUES ('$email_user','$permiso_ver_reportes','$permiso_registrar_reportes','$permiso_actualizar_reportes','$permiso_eliminar_reportes')");
+
 			}
 
 		}

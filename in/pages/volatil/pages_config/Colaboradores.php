@@ -10,7 +10,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div id="colaboradores" class="content-wrapper">
-    <pre>{{$data}}</pre>
+    
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -59,7 +59,7 @@
 
                         <div class="card card-default mt-4">
                           <div class="card-header">
-                            <h3 class="card-title">Registra un nuevo colaborador</h3>
+                            <h3 class="card-title">Registra un nuevo asistente</h3>
 
                             <div v-if="!messageexito" class="card-tools">
                               <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -137,7 +137,8 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Permisos de usuario</h3>
+                <h3 v-if="!NoSeEstablecieronPermisos" class="card-title">Permisos de asistente</h3>
+                <h3 v-if="NoSeEstablecieronPermisos" class="card-title text-danger ">Debes establecer los permisos para este nuevo asistente</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -148,37 +149,73 @@
                   <div class="card card-info">
                     <div class="card-header">
                       <h4 class="card-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <a @click="acordeon_control_pacientes = !acordeon_control_pacientes" data-toggle="collapse" data-parent="#accordion" href="#control_pacientes">
                             Control de pacientes
+                            <i class="mt-2 fa fa-chevron-right " v-if="!acordeon_control_pacientes"></i>
+                            <i class="mt-2 fa fa-chevron-down " v-if="acordeon_control_pacientes"></i>
                         </a>
+
                       </h4>
                     </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
+                    <div id="control_pacientes" class="panel-collapse collapse">
                       <div class="card-body">
                        <!-- -->
                          <!-- iCheck -->
-                      
-                            <!-- Minimal style -->
-
-                            <!-- checkbox -->
                             <div class="form-group">
-                              <label>
-                                <input type="checkbox" class="minimal" checked>
-                              </label>
-                              <label>
-                                <input type="checkbox" class="minimal">
-                              </label>
-                              <label>
-                                <input type="checkbox" class="minimal" disabled>
-                                Minimal skin checkbox
-                              </label>
-                            </div>
 
-                          <!-- /.card-body -->
-                          <div class="card-footer">
-                            Many more skins available. <a href="http://fronteed.com/iCheck/">Documentation</a>
-                          </div>
-                        
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_ver_pacientes" class="btn btn-danger" @click="permiso_ver_pacientes = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_ver_pacientes" class="btn btn-success" @click="permiso_ver_pacientes = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Ver
+                                </label>
+                              </div>
+
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_registrar_pacientes" class="btn btn-danger" @click="permiso_registrar_pacientes = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_registrar_pacientes" class="btn btn-success" @click="permiso_registrar_pacientes = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Registrar
+                                </label>
+                              </div>
+                             
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_actualizar_pacientes" class="btn btn-danger" @click="permiso_actualizar_pacientes = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_actualizar_pacientes" class="btn btn-success" @click="permiso_actualizar_pacientes = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Actualizar
+                                </label>
+                              </div>
+                              
+                              <div >
+                                 <label>
+                                    <button v-if="!permiso_eliminar_pacientes" class="btn btn-danger" @click="permiso_eliminar_pacientes = true">
+                                      <i class="fa fa-times"></i>
+                                    </button> 
+
+                                     <button v-if="permiso_eliminar_pacientes" class="btn btn-success" @click="permiso_eliminar_pacientes = false">
+                                      <i class="fa fa-check"></i>
+                                    </button> 
+                                      Puede Eliminar
+                                  </label>
+                              </div>
+
+                            </div>
                         <!-- /.card -->
 
                        <!-- -->
@@ -189,33 +226,154 @@
                    <div class="card card-info">
                     <div class="card-header">
                       <h4 class="card-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <a @click="acordeon_control_agenda = !acordeon_control_agenda" data-toggle="collapse" data-parent="#accordion" href="#agenda_y_control_citas">
                            Agenda y control de citas
+                           <i class="mt-2 fa fa-chevron-right " v-if="!acordeon_control_agenda"></i>
+                            <i class="mt-2 fa fa-chevron-down " v-if="acordeon_control_agenda"></i>
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
+                    <div id="agenda_y_control_citas" class="panel-collapse collapse">
                       <div class="card-body">
                        <!-- -->
-                        
+                          <div class="form-group">
+
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_ver_agenda" class="btn btn-danger" @click="permiso_ver_agenda = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_ver_agenda" class="btn btn-success" @click="permiso_ver_agenda = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Ver
+                                </label>
+                              </div>
+
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_registrar_en_agenda" class="btn btn-danger" @click="permiso_registrar_en_agenda = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_registrar_en_agenda" class="btn btn-success" @click="permiso_registrar_en_agenda = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Registrar
+                                </label>
+                              </div>
+                             
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_actualizar_agenda" class="btn btn-danger" @click="permiso_actualizar_agenda = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_actualizar_agenda" class="btn btn-success" @click="permiso_actualizar_agenda = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Actualizar
+                                </label>
+                              </div>
+                              
+                              <div >
+                                 <label>
+                                    <button v-if="!permiso_eliminar_agenda" class="btn btn-danger" @click="permiso_eliminar_agenda = true">
+                                      <i class="fa fa-times"></i>
+                                    </button> 
+
+                                     <button v-if="permiso_eliminar_agenda" class="btn btn-success" @click="permiso_eliminar_agenda = false">
+                                      <i class="fa fa-check"></i>
+                                    </button> 
+                                      Puede Eliminar
+                                  </label>
+                              </div>
+
+                            </div>
+                        <!-- /.card -->
                        <!-- -->
                       </div>
                     </div>
                   </div>
 
 
+
+
+
+
+
+
                    <div class="card card-info">
                     <div class="card-header">
                       <h4 class="card-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <a @click="acordeon_control_reportes = !acordeon_control_reportes" data-toggle="collapse" data-parent="#accordion" href="#control_de_reportes">
                           Control de reportes
+                           <i class="mt-2 fa fa-chevron-right " v-if="!acordeon_control_reportes"></i>
+                            <i class="mt-2 fa fa-chevron-down " v-if="acordeon_control_reportes"></i>
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
+                    <div id="control_de_reportes" class="panel-collapse collapse">
                       <div class="card-body">
                        <!-- -->
-                        
+                             <!-- -->
+                          <div class="form-group">
+
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_ver_reportes" class="btn btn-danger" @click="permiso_ver_reportes = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_ver_reportes" class="btn btn-success" @click="permiso_ver_reportes = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Ver
+                                </label>
+                              </div>
+
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_registrar_reportes" class="btn btn-danger" @click="permiso_registrar_reportes = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_registrar_reportes" class="btn btn-success" @click="permiso_registrar_reportes = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Registrar
+                                </label>
+                              </div>
+                             
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_actualizar_reportes" class="btn btn-danger" @click="permiso_actualizar_reportes = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_actualizar_reportes" class="btn btn-success" @click="permiso_actualizar_reportes = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Actualizar
+                                </label>
+                              </div>
+                              
+                              <div >
+                                 <label>
+                                    <button v-if="!permiso_eliminar_reportes" class="btn btn-danger" @click="permiso_eliminar_reportes = true">
+                                      <i class="fa fa-times"></i>
+                                    </button> 
+
+                                     <button v-if="permiso_eliminar_reportes" class="btn btn-success" @click="permiso_eliminar_reportes = false">
+                                      <i class="fa fa-check"></i>
+                                    </button> 
+                                      Puede Eliminar
+                                  </label>
+                              </div>
+
+                            </div>
+                        <!-- /.card -->
                        <!-- -->
                       </div>
                     </div>
@@ -225,15 +383,72 @@
                    <div class="card card-info">
                     <div class="card-header">
                       <h4 class="card-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        <a @click="acordeon_control_configuracion_cuenta = !acordeon_control_configuracion_cuenta" data-toggle="collapse" data-parent="#accordion" href="#configuracion_cuenta">
                           Configuración de cuenta
+                          <i class="mt-2 fa fa-chevron-right " v-if="!acordeon_control_configuracion_cuenta"></i>
+                            <i class="mt-2 fa fa-chevron-down " v-if="acordeon_control_configuracion_cuenta"></i>
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
+                    <div id="configuracion_cuenta" class="panel-collapse collapse">
                       <div class="card-body">
                        <!-- -->
-                        
+                          <div class="form-group">
+
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_ver_configuracion_cuenta" class="btn btn-danger" @click="permiso_ver_configuracion_cuenta = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_ver_configuracion_cuenta" class="btn btn-success" @click="permiso_ver_configuracion_cuenta = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Ver
+                                </label>
+                              </div>
+
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_registrar_configuracion_cuenta" class="btn btn-danger" @click="permiso_registrar_configuracion_cuenta = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_registrar_configuracion_cuenta" class="btn btn-success" @click="permiso_registrar_configuracion_cuenta = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Registrar
+                                </label>
+                              </div>
+                             
+                              <div >
+                                <label>
+                                  <button v-if="!permiso_actualizar_configuracion_cuenta" class="btn btn-danger" @click="permiso_actualizar_configuracion_cuenta = true">
+                                    <i class="fa fa-times"></i>
+                                  </button> 
+
+                                  <button v-if="permiso_actualizar_configuracion_cuenta" class="btn btn-success" @click="permiso_actualizar_configuracion_cuenta = false">
+                                    <i class="fa fa-check"></i>
+                                  </button> 
+                                  Puede Actualizar
+                                </label>
+                              </div>
+                              
+                              <div >
+                                 <label>
+                                    <button v-if="!permiso_eliminar_configuracion_cuenta" class="btn btn-danger" @click="permiso_eliminar_configuracion_cuenta = true">
+                                      <i class="fa fa-times"></i>
+                                    </button> 
+
+                                     <button v-if="permiso_eliminar_configuracion_cuenta" class="btn btn-success" @click="permiso_eliminar_configuracion_cuenta = false">
+                                      <i class="fa fa-check"></i>
+                                    </button> 
+                                      Puede Eliminar
+                                  </label>
+                              </div>
+
+                            </div>
+                        <!-- /.card -->
                        <!-- -->
                       </div>
                     </div>
@@ -282,7 +497,7 @@
                               <!-- /.col -->
                               <div class="col-md-12">
                                 <div class="form-group">
-                                  <button @click="addColaborador()" class="btn btn-primary Large btn-block btn-lg" >Registrar</button>
+                                  <button @click="addColaborador()" class="btn btn-primary Large btn-block btn-lg" >Registrar asistente</button>
                                 </div>
                               </div>
                               <!-- /.col -->

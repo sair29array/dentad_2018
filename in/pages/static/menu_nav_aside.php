@@ -116,7 +116,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./Odontograma" class="nav-link">
+                <a href="./Odontograma" class="nav-link <?php if(@$_GET["view"]=="Odontograma"){?> active <?php  } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Odontograma</p>
                 </a>

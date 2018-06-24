@@ -286,6 +286,10 @@ to get the desired effect
     if (@$_GET["view"]=="Colaboradores") {
       ?><script src="Config/js/Colaboradores.js"></script> <?php 
     }
+
+    if (@$_GET["view"]=="Odontograma") {
+      ?><script src="Config/js/Odontograma.js"></script> <?php 
+    }
  ?>
 
 

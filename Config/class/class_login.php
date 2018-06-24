@@ -32,8 +32,20 @@
 		public function ConfirmEmail($email) // /sabemos si el user que se está registrando ya existe
 		{
 			//VERIFICAR SI EL CORREO QUE SE INGRESÓ ESTÁ O NO ESTÁ EN LA DB:
+			include("../conexion.php");
 			$error = 0;
 			$datos = $this->GetDatosUsuariosRegistrados();
+
+			$allAsistentes = mysqli_query($conn, "SELECT * FROM colaboradores ");
+
+			foreach ($allAsistentes as $uu) 
+			{
+				if ($uu["email"] == $email) // verificamos si el email no está dentro de los colaboradores
+				{
+					$error = 1;
+				}
+			}
+
 			foreach ($datos as $datos_users) 
 			{
 			  if (filter_var($email, FILTER_VALIDATE_EMAIL))

@@ -23,6 +23,8 @@ if ($action == 'read')
    if (filter_var($e, FILTER_VALIDATE_EMAIL))
 	{
 		 $super_user = new  useR();
+
+		 	 
 		  $consult =  $super_user -> UpdateDataAdminUser($n,$e,$id_user,$email_actual);
 
 		  if ($consult == 0) 
