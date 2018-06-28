@@ -68,6 +68,24 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                   <p>Licencia de Software</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="./Colaboradores" class="nav-link <?php if($_GET["view"]=='Colaboradores'){?> active <?php } ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Asistentes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./Tratamientos" class="nav-link <?php if($_GET["view"]=='Tratamientos'){?> active <?php } ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Tratamientos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./Diagnósticos" class="nav-link <?php if($_GET["view"]=='Diagnósticos'){?> active <?php } ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Diagnósticos</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -199,6 +217,18 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                 <a href="./Colaboradores" class="nav-link <?php if($_GET["view"]=='Colaboradores'){?> active <?php } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Asistentes</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./Tratamientos" class="nav-link <?php if($_GET["view"]=='Tratamientos'){?> active <?php } ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Tratamientos</p>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a href="./Diagnósticos" class="nav-link <?php if($_GET["view"]=='Diagnósticos'){?> active <?php } ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Diagnósticos</p>
                 </a>
               </li>
               <li class="nav-item">

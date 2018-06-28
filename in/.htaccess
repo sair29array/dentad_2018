@@ -17,6 +17,8 @@ RewriteRule ^(Colaboradores)$ index.php?view=$1
 
 
 RewriteRule ^(Odontograma)$ index.php?view=$1
+RewriteRule ^(Tratamientos)$ index.php?view=$1
+RewriteRule ^(Diagnósticos)$ index.php?view=$1
 
 
 

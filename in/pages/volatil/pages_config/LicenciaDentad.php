@@ -47,7 +47,7 @@ $dias_restantes = $fecha_de_expiración_cuenta_gratuita -> diffForHumans();
                      <div class="alert alert-primary alert-dismissable col-sm-12">
               <i class="fa fa-primary"></i>
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <b> <i class="fa fa-check"></i> Licencia Dentad V-1.0. </b> Su licencia está activa desde: 05 de junio de 2018
+              <b> <i class="fa fa-check"></i> Licencia Dentad V-1.0. </b> Licencia DtdAAioV10 Activada.
             </div>
              <!-- /.col-md-12 -->
           <div class="col-lg-12">

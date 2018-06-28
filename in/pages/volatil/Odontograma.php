@@ -2,7 +2,7 @@
 <!-- Content Wrapper. Contains page content -->
 <link rel="stylesheet" href="plugins/select2/select2.min.css">
   <div id="Odontograma" class="content-wrapper">
-    
+    <pre>{{$data}}</pre>
     <!-- Content Header (Page header) -->
     <?php if (!isset($_GET["id"]))  // paciente id
         { ?>
@@ -26,7 +26,7 @@
                         foreach ($pacientes as $paciente_) 
                         {
                           ?>
-                          <option value="<?php echo $paciente_["id"]; ?>" ><?php echo $paciente_["tipo_identidad"].":". $paciente_["num_identidad"] ." - ".$paciente_["nombres"]." ". $paciente_["apellidos"]; ?></option>
+                          <option value="<?php echo $paciente_["num_identidad"]; ?>" ><?php echo $paciente_["tipo_identidad"].":". $paciente_["num_identidad"] ." - ".$paciente_["nombres"]." ". $paciente_["apellidos"]; ?></option>
                           <?php 
                         }
                       ?>
@@ -77,219 +77,100 @@
     <?php 
         if (isset($_GET["id"]))  // paciente id
         {
+
+          $paciente_seleccionado = $super_pacientes->GetPacienteNumID($_GET["id"]);
+          foreach ($paciente_seleccionado as $ps) {}
+
+
           ?>
+
+    
+    <div class="col-md-12 col-sm-6 col-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-default"><img src="dist/img/odontograma_icon.png"></span>
+
+           <div class="info-box-content">
+              <h3>Odontograma</h3>
+              <h5><b>Paciente: </b><a href="./?view=paciente&id=<?php echo $ps["num_identidad"]; ?>"> <?php echo $ps["tipo_identidad"].": ".$ps["num_identidad"]." - ".$ps["nombres"]. " " . $ps["apellidos"];  ?></a></h5>
+              
+           </div>
+              <!-- /.info-box-content -->
+        </div>
+            <!-- /.info-box -->
+    </div>
+
+
+
    <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-6">
-            <!-- AREA CHART -->
-            <div class="card card-info">
-              <div class="card-header"  style="cursor:pointer;">
-                <h3 class="card-title">Derecha</h3>
-
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                 <table class="table" border="0">
-                    
-                    <tr>
-                      <td class="text-primary">18</td>
-                      <td>17</td>
-                      <td>16</td>
-                      <td>15</td>
-                      <td>14</td>
-                      <td>13</td>
-                      <td>12</td>
-                      <td>11</td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                  </table>
-              
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- DONUT CHART -->
-            <div class="card card-info">
-              <div class="card-header" style="cursor:pointer;">
-                <h3 class="card-title">Derecha</h3>
-              </div>
-              
-              <div class="card-body">
-                <div class="chart">
-                 <table class="table" border="0">
-                    
-                    <tr>
-                      <td>48</td>
-                      <td>47</td>
-                      <td>46</td>
-                      <td>45</td>
-                      <td>44</td>
-                      <td>43</td>
-                      <td>42</td>
-                      <td>41</td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                  </table>
-              
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-          </div>
-
-         
-
-          <!-- /.col (LEFT) -->
-          <div class="col-md-6">
-            <!-- LINE CHART -->
-            <div class="card card-info">
-              <div class="card-header" style="cursor:pointer;">
-                <h3 class="card-title">Izquierda</h3>
-
+           
+          
+               <!-- /.col (LEFT) -->
+              <div v-if="all_recuadros" class="col-md-6">
                
+                  <?php 
+                    include("recuadros_odontograma/recuadro1.php"); 
+                    include("recuadros_odontograma/recuadro2.php");
+                  ?>
               </div>
+
+
+                <!-- /.col (RIGHT) -->    
+              <div v-if="all_recuadros" class="col-md-6">
+               <div v-if="!recuadro_4">
+                 <?php
+                    include("recuadros_odontograma/recuadro3.php");
+                    include("recuadros_odontograma/recuadro4.php");
+                ?>
+               </div>
+              </div>
+          
+
             
-              <div class="card-body">
-                <div class="chart">
-                 <table class="table" border="0">
-                    
-                    <tr>
-                      <td>21</td>
-                      <td>22</td>
-                      <td>23</td>
-                      <td>24</td>
-                      <td>25</td>
-                      <td>26</td>
-                      <td>27</td>
-                      <td>28</td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                  </table>
-              
-                </div>
-                
+
+
+            <!-- / si el user seleccionó a un recuadro en particular -->
+               <div v-if="showRecuadroIndividual" class="col-md-12">
+               
+                 <div v-if="showRecuadroIndividual == 1">
+                    <?php   include("recuadros_odontograma/recuadro1.php"); ?>
+                 </div>
+
+                  <div v-if="showRecuadroIndividual == 2">
+                    <?php   include("recuadros_odontograma/recuadro2.php"); ?>
+                 </div>
+
+
+                 <div v-if="showRecuadroIndividual == 3">
+                    <?php   include("recuadros_odontograma/recuadro3.php"); ?>
+                 </div>
+
+                 <div v-if="showRecuadroIndividual == 4">
+                    <?php  include("recuadros_odontograma/recuadro4.php"); ?>
+                 </div>
+
+
               </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
 
 
 
 
-            <!-- BAR CHART -->
-            <div class="card card-info">
-              <div class="card-header" style="cursor:pointer;">
-                <h3 class="card-title">Izquierda</h3>
 
-                
-              </div>
-             
-              <div class="card-body">
-                <div class="chart">
-                 <table class="table" border="0">
-                    
-                    <tr>
-                      <td>31</td>
-                      <td>32</td>
-                      <td>33</td>
-                      <td>34</td>
-                      <td>35</td>
-                      <td>36</td>
-                      <td>37</td>
-                      <td>38</td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                    <tr>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="fg"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                      <td><img style="cursor: pointer;" src="df"></td>
-                    </tr>
-                  </table>
-              
-                </div>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
 
-          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
           <!-- /.col (RIGHT) -->
         </div>
         <!-- /.row -->
@@ -301,6 +182,22 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <script type="text/javascript">
      $(function () {
