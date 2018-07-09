@@ -201,19 +201,19 @@ session_start();
                 <div class="hidden-xs hidden-sm col-md-5 text-right">
                     <div class="screen-box screen-slider">
                         <div class="item">
-                            <img src="images/screen-1.jpg" alt="">
+                            <img src="images/screenshots/recorte1.jpg" alt="">
                         </div>
                         <div class="item">
-                            <img src="images/screen-2.jpg" alt="">
+                            <img src="images/screenshots/recorte2.jpg" alt="">
                         </div>
                         <div class="item">
-                            <img src="images/screen-3.jpg" alt="">
+                            <img src="images/screenshots/recorte6.jpg" alt="">
                         </div>
                         <div class="item">
-                            <img src="images/screen-4.jpg" alt="">
+                            <img src="images/screenshots/recorte4.jpg" alt="">
                         </div>
                         <div class="item">
-                            <img src="images/screen-5.jpg" alt="">
+                            <img src="images/screenshots/recorte7.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -279,16 +279,12 @@ session_start();
                                             <a href="#" class="button">Read more</a>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo one" data-animation="animated fadeInRight">
-                                            <img src="images/screen-1.jpg" alt="">
+                                    <div class="col-xs-12 col-md-3">
+                                        <div class="one" data-animation="animated fadeInRight">
+                                            <img src="images/screenshots/pc.png" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo two" data-animation="animated fadeInRight">
-                                            <img src="images/screen-2.jpg" alt="">
-                                        </div>
-                                    </div>
+                                  
                                 </div>
                             </div>
                             <div class="item row">

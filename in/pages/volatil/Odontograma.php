@@ -1,8 +1,31 @@
-<?php $pacientes = $super_pacientes->GetAllPacientes($id_clinica); ?>
+<?php
+ $pacientes = $super_pacientes->GetAllPacientes($id_clinica); 
+ $diagnosticosDB = $super_diagnosticos -> GetAllDiagnosticos($id_clinica);
+ $tratamientosDB = $super_tratamientos -> GetAllTratamientos($id_clinica);
+
+
+?>
 <!-- Content Wrapper. Contains page content -->
+<script>
+  var id_tratamiento = "";
+  var id_diagnostico = "";
+
+  var id_tratamientor2 = "";
+  var id_diagnosticor2 = "";
+
+  var id_tratamientor3 = "";
+  var id_diagnosticor3 = "";
+
+  var id_tratamientor4 = "";
+  var id_diagnosticor4 = "";
+
+
+  var fecha_Actual = "<?php echo $fecha_actual ?>";
+
+</script>
 <link rel="stylesheet" href="plugins/select2/select2.min.css">
   <div id="Odontograma" class="content-wrapper">
-    <pre>{{$data}}</pre>
+    
     <!-- Content Header (Page header) -->
     <?php if (!isset($_GET["id"]))  // paciente id
         { ?>
@@ -75,6 +98,7 @@
 
     <!-- Main content -->
     <?php 
+  
         if (isset($_GET["id"]))  // paciente id
         {
 
@@ -100,27 +124,58 @@
     </div>
 
 
-
-   <section class="content">
+    <?php 
+       if (!isset($_GET["IdDent"]) && !isset($_GET["Idr"])) 
+        // si no se ha selñeccionado un diente en particular para ver sus anotaciones, entonces se mostraran los cuadrantes,. 
+        /// Idr es el ide de un recuadro 
+         {
+            ?>
+               <section class="content">
       <div class="container-fluid">
         <div class="row">
            
           
                <!-- /.col (LEFT) -->
               <div v-if="all_recuadros" class="col-md-6">
-               
-                  <?php 
+                     <?php 
                     include("recuadros_odontograma/recuadro1.php"); 
-                    include("recuadros_odontograma/recuadro2.php");
+                  ?>
+              </div>
+              <div v-if="all_recuadros" class="col-md-6">
+                     <?php 
+                      include("recuadros_odontograma/recuadro3.php");
                   ?>
               </div>
 
 
+
+
+
+              <!--- RECUADROS DE DENTICIÓN -->
+                <div v-if="all_recuadros" class="col-md-12 text-center ">
+                  <div class="btn-group">
+                    <button @click="abrirDenticionTemporal()" class="btn btn-default">Dentición temporal</button>
+                  </div>
+                </div>
+                  
+              <!--- FIN RECUADROS DE DENTICIÓN -->
+
+
+
+
+
+
+
                 <!-- /.col (RIGHT) -->    
-              <div v-if="all_recuadros" class="col-md-6">
+              <div v-if="all_recuadros" class="col-md-6 mt-3">
+                <?php
+                     include("recuadros_odontograma/recuadro2.php");
+                ?>
+              </div>
+
+              <div v-if="all_recuadros" class="col-md-6 mt-3">
                <div v-if="!recuadro_4">
-                 <?php
-                    include("recuadros_odontograma/recuadro3.php");
+                <?php
                     include("recuadros_odontograma/recuadro4.php");
                 ?>
                </div>
@@ -130,46 +185,7 @@
             
 
 
-            <!-- / si el user seleccionó a un recuadro en particular -->
-               <div v-if="showRecuadroIndividual" class="col-md-12">
-               
-                 <div v-if="showRecuadroIndividual == 1">
-                    <?php   include("recuadros_odontograma/recuadro1.php"); ?>
-                 </div>
-
-                  <div v-if="showRecuadroIndividual == 2">
-                    <?php   include("recuadros_odontograma/recuadro2.php"); ?>
-                 </div>
-
-
-                 <div v-if="showRecuadroIndividual == 3">
-                    <?php   include("recuadros_odontograma/recuadro3.php"); ?>
-                 </div>
-
-                 <div v-if="showRecuadroIndividual == 4">
-                    <?php  include("recuadros_odontograma/recuadro4.php"); ?>
-                 </div>
-
-
-              </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
           <!-- /.col (RIGHT) -->
         </div>
@@ -177,11 +193,30 @@
       </div><!-- /.container-fluid -->
     </section>
           <?php 
+        }else if (isset($_GET["IdDent"]))
+        {
+          include("recuadros_odontograma/recuadro_de_anotaciones_a_dientes.php");
+        }else if (isset($_GET["Idr"])) 
+        {
+          //// se muestran individualmente los recuadros
+          // alli se podra: agregar a varias píezas un diagnostico o un trata miento
+          if ($_GET["Idr"] == 1) {
+            include("recuadros_odontograma/showRecuadroIndividual1.php");
+          }else if ($_GET["Idr"] == 2) {
+            include("recuadros_odontograma/showRecuadroIndividual2.php");
+          }else if ($_GET["Idr"] == 3) {
+            include("recuadros_odontograma/showRecuadroIndividual3.php");
+          }else if ($_GET["Idr"] == 4) {
+            include("recuadros_odontograma/showRecuadroIndividual4.php");
+          }
+
+          
         }
+
+      }
      ?>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+
+
 
 
 
@@ -200,11 +235,7 @@
 
 
   <script type="text/javascript">
-     $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2();
-  });
-
+ 
 
      var id_paciente_seleccionado = 0;
 
@@ -212,4 +243,53 @@
     {
       id_paciente_seleccionado =  document.getElementById("pacientes").value;
     }
+
+    <?php if (isset($_GET["id"])) {?> id_paciente_seleccionado = "<?php echo @$_GET["id"] ?>"; <?php } ?>
   </script>
+
+  <script>
+      $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2();
+  });
+
+</script>
+
+ <script>
+   // para cuando se selecciona un diagnostico o un tratamiento 
+  // para un diente en particular
+  function addTraDiag_()  /// recuadro 1
+                        {
+    id_tratamiento = document.getElementById('tratamiento').value;
+    id_diagnostico = document.getElementById('diagnostico').value;
+
+  }
+
+
+  function addTraDiag_r2() // recuadro 2
+  {
+    id_tratamientor2 = document.getElementById('tratamientor2').value;
+    id_diagnosticor2 = document.getElementById('diagnosticor2').value;
+
+  }
+
+
+   function addTraDiag_r3() // recuadro 2
+  {
+    id_tratamientor3 = document.getElementById('tratamientor3').value;
+    id_diagnosticor3 = document.getElementById('diagnosticor3').value;
+
+  }
+
+
+   function addTraDiag_r4() // recuadro 2
+  {
+    id_tratamientor4 = document.getElementById('tratamientor4').value;
+    id_diagnosticor4 = document.getElementById('diagnosticor4').value;
+
+  }
+
+
+ </script>
+
+</div>

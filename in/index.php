@@ -8,6 +8,13 @@ require_once("Config/class/class_pacientes.php");
 require_once("Config/class/class_colaboradores.php");
 require_once("Config/class/class_fecha.php");
 require_once("Config/class/class_agenda.php");
+require_once("Config/class/class_tratamientos.php");
+require_once("Config/class/class_diagnosticos.php");
+require_once("Config/class/class_pieza_diente.php");
+require_once("Config/class/class_diagnosticosANDpiezas.php");
+require_once("Config/class/class_tratamientosANDpiezas.php");
+
+
 
 //// CArbon libreria para fechas
 //https://www.youtube.com/watch?v=CzyMmjLVXiM tutorial en youtube
@@ -25,6 +32,11 @@ $super_pacientes = new pacientes();
 $super_colaboradores = new colaboradores();
 $super_fecha = new fecha();
 $super_agenda = new Agenda(); 
+$super_tratamientos = new tratamientos();
+$super_diagnosticos = new diagnosticos();
+$super_dientes = new diente();
+$superDiagDent = new diagnosticosANDpiezas();
+$superTratDent = new tratamientosANDpiezas();
 
 if (!isset($_SESSION["_user_log"])) 
   {
@@ -153,6 +165,10 @@ to get the desired effect
         include("pages/volatil/pages_config/Colaboradores.php");
       }else if (@$_GET["view"]=="Odontograma") {
         include("pages/volatil/Odontograma.php");
+      }else if (@$_GET["view"]=="Tratamientos") {
+        include("pages/volatil/admin/tratamientosYdiagnosticos/tratamientos.php");
+      }else if (@$_GET["view"]=="Diagnósticos") {
+        include("pages/volatil/admin/tratamientosYdiagnosticos/diagnosticos.php");
       }
     }else
     {
@@ -177,6 +193,10 @@ to get the desired effect
         include("pages/volatil/pages_config/Colaboradores.php");
       }else if (@$_GET["view"]=="Odontograma") {
         include("pages/volatil/Odontograma.php");
+      }else if (@$_GET["view"]=="Tratamientos") {
+        include("pages/volatil/admin/tratamientosYdiagnosticos/tratamientos.php");
+      }else if (@$_GET["view"]=="Diagnósticos") {
+        include("pages/volatil/admin/tratamientosYdiagnosticos/diagnosticos.php");
       }
     }
     require_once("pages/static/footer.php");
@@ -289,6 +309,14 @@ to get the desired effect
 
     if (@$_GET["view"]=="Odontograma") {
       ?><script src="Config/js/Odontograma.js"></script> <?php 
+    }
+
+    if (@$_GET["view"]=="Tratamientos") {
+      ?><script src="Config/js/tratamientos.js"></script> <?php 
+    }
+
+    if (@$_GET["view"]=="Diagnósticos") {
+      ?><script src="Config/js/Diagnosticos.js"></script> <?php 
     }
  ?>
 
