@@ -1,6 +1,8 @@
 var app = new Vue({
   el: '#AgendarForm',
   data: {
+    email_: id_user_receptor_admin,
+    fecha_actual: fecha_actual,
     message: '',
     messageexito: false,
     id_clinica: id_clinica,
@@ -11,7 +13,7 @@ var app = new Vue({
 
     fecha_fin: fecha_fin,
     hora_fin: hora_fin,
-    valor_cita: valor_cita,
+    valor_cita: "",
     observaciones: Observaciones, // las observaciones no son obligatorias en el form-
 
 
@@ -30,24 +32,23 @@ var app = new Vue({
   {
   	SetDAtaCita()
   	{
-  		app.id_paciente = id_paciente;
-  		app.motivo_consulta = motivo_consulta;
-  		app.fecha_inicio = fecha_inicio;
-  		app.hora_inicio = hora_inicio;
-  		app.fecha_fin = fecha_fin;
-  		app.hora_fin = hora_fin;
-  		app.valor_cita = valor_cita;
-  		app.observaciones = Observaciones;
+  		this.id_paciente = id_paciente;
+  		this.motivo_consulta = motivo_consulta;
+  		this.fecha_inicio = fecha_inicio;
+  		this.hora_inicio = hora_inicio;
+  		this.fecha_fin = fecha_fin;
+  		this.hora_fin = hora_fin;
+  		this.observaciones = Observaciones;
 
   		// -----------
 
-  		if (app.id_paciente == "0") {this.id_paciente_null = true; }
-  		if (app.motivo_consulta == "0") {this.motivo_consulta_null = true;}
-  		if (app.fecha_inicio == "") {this.fecha_inicio_null = true;}
-  		if (app.fecha_fin == "") {this.fecha_fin_null = true;}
-  		if (app.hora_inicio == "") {this.hora_inicio_null = true;}
-  		if (app.hora_fin == "") {this.hora_fin_null = true;}
-  		if (app.valor_cita == "") {this.valor_cita_null = true;}
+  		if (app.id_paciente == "0") {this.id_paciente_null = true; }else{this.id_paciente_null = false;}
+  		if (app.motivo_consulta == "0") {this.motivo_consulta_null = true;}else{this.motivo_consulta_null = false;}
+  		if (app.fecha_inicio == "") {this.fecha_inicio_null = true;}else{this.fecha_inicio_null = false;}
+  		if (app.fecha_fin == "") {this.fecha_fin_null = true;}else{this.fecha_fin_null = false;}
+  		if (app.hora_inicio == "") {this.hora_inicio_null = true;}else{this.hora_inicio_null = false;}
+  		if (app.hora_fin == "") {this.hora_fin_null = true;}else{this.hora_fin_null = false;}
+  		if (app.valor_cita == "") {this.valor_cita_null = true;}else{this.valor_cita_null = false;}
 
 
   		// ---------------------
@@ -72,6 +73,8 @@ var app = new Vue({
               formData.append('valor_cita', this.valor_cita);
               formData.append('observaciones', this.observaciones);
               formData.append('id_clinica', this.id_clinica);
+              formData.append('fecha_actual', this.fecha_actual);
+              formData.append('email_', this.email_);
 
                       axios.post("Config/sql/sql_agendar_cita.php?action=read",formData)
                               .then(function(response) {

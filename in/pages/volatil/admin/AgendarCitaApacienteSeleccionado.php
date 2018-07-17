@@ -1,9 +1,7 @@
-<?php 
-$hora_inicio_seleccionada = "";
-$fecha_seleccionada = substr($_GET["date"] , 0, 10 );
-if (strlen($_GET["date"]) > 10) 
-{
-	$hora_inicio_seleccionada = substr($_GET["date"] , 11 );
+<?php
+$p = $super_pacientes ->GetPacienteNumID($_GET["id"]);
+foreach ($p as $paciente) {
+	# code...
 }
 ?>
 <!-- Select2 -->
@@ -52,7 +50,7 @@ if (strlen($_GET["date"]) > 10)
 
 		    <div class="card">
 		      <div class="modal-header">
-		        <h2 class="modal-title" >Agendar una cita para la fecha  <b ><?php echo $fecha_seleccionada; ?></b> </h2>
+		        <h3 class="modal-title" >Agendar una cita para <?php echo $paciente["nombres"]." ".$paciente["apellidos"]; ?> </h3>
 		        <button type="button" class="close"  >
 		          <span > <a href="./Agenda"><h1><i class="fa fa-calendar-alt"></i></h1></a></span>
 		        </button>
@@ -72,13 +70,14 @@ if (strlen($_GET["date"]) > 10)
 			        	<div class="col-md-6">
 			        		<p v-if="id_paciente_null" class="text-danger">Este campo es obligatorio (*)</p>
 	                 
-	                  	<select  id="id_paciente" class="form-control select2" style="width: 100%;">
+	                  	<select disabled="true"  id="id_paciente" class="form-control select2" style="width: 100%;">
 
-	                  	<option value="0">Escojer un paciente </option>
+	                  	<option value="0">Paciente </option>
 	                  	<?php foreach ($pacientes_DB  as $pe ) 
 	                  	{
 	                  		?>
-	                  			<option value="<?php echo $pe["id"]; ?>"><?php echo  "ID: ".$pe["num_identidad"]." - ".$pe["nombres"]." " . $pe["apellidos"]; ?></option>
+	                  			<option <?php if ($pe["num_identidad"] == $paciente["num_identidad"]) { ?> selected="true" <?php 
+	                  			} ?> value="<?php echo $pe["id"]; ?>"><?php echo  "ID: ".$pe["num_identidad"]." - ".$pe["nombres"]." " . $pe["apellidos"]; ?></option>
 	                  		<?php 
 	                  	} 
 	                  	?>
@@ -93,7 +92,7 @@ if (strlen($_GET["date"]) > 10)
 			        		<select id="motivo_consulta" class="form-control select2" style="width: 100%;">
 
 	                  	<option value="0">Escojer un motivo de consulta</option>
-	                  	<?php 
+	                  <?php 
 	                  		foreach ($superMotivosC->GetMotivosConsulta($id_clinica) as $motivo) 
 	                  		{
 	                  			?> <option value="<?php echo $motivo["motivoc"] ; ?>"><?php echo $motivo["motivoc"] ;  ?></option> <?php 
@@ -112,24 +111,14 @@ if (strlen($_GET["date"]) > 10)
 	                 	<label class="mt-3">Fecha y hora de inicio</label>
 	                  			
 	                  				<p v-if="fecha_inicio_null" class="text-danger">Este campo es obligatorio (*)</p>
-	                  			<input id="fecha_inicio" type="text" class="form-control" disabled="true" name="" value="<?php echo $fecha_seleccionada; ?>">
+	                  			<input id="fecha_inicio" type="date" class="form-control" name="" >
 	                  			
 				                  <br><br>
 					     
-					        	<?php 
-					        		if ($hora_inicio_seleccionada == "") 
-					        		{
-					        		 ?><div class="input-group clockpicker" data-autoclose="true">
+					        	<div class="input-group clockpicker" data-autoclose="true">
 					        	<p v-if="hora_inicio_null" class="text-danger">Este campo es obligatorio (*)</p>
 					        	<input placeholder="HH:MM" class="form-control" type="text" id="hora_inicio" name="txtHora">
-					        	</div> <?php 
-					        		}else{
-					        			?> <div class="input-group clockpicker" data-autoclose="true">
-					        	<p v-if="hora_inicio_null" class="text-danger">Este campo es obligatorio (*)</p>
-					        	<input disabled="true"  class="form-control" type="text" id="hora_inicio" name="txtHora" value="<?php echo $hora_inicio_seleccionada; ?>">
-					        	</div><?php 
-					        		}
-					        	 ?>
+					        	</div>
 	                 </div>
 
 
@@ -137,7 +126,7 @@ if (strlen($_GET["date"]) > 10)
 	                 	
 					        	<label class="mt-3">Fecha y hora de finalización</label>
 					        	<p v-if="fecha_fin_null" class="text-danger">Este campo es obligatorio (*)</p>
-	                  			<input type="date" min="<?php echo $fecha_seleccionada; ?>" class="form-control" id="fecha_fin" >
+	                  			<input type="date" min="<?php echo $_GET["date"]; ?>" class="form-control" id="fecha_fin" >
 
 	                  		
 				                  <br><br>
@@ -188,7 +177,7 @@ if (strlen($_GET["date"]) > 10)
 		      
 
 		      <div v-if="!messageexito" class="modal-footer">
-		        <button type="button"  class="btn btn-primary btn-block" onclick="recolectar_data();"  @click="SetDAtaCita()"> <i class="fa fa-calendar-alt"></i> Agendar cita</button>
+		        <button type="button"  class="btn btn-primary btn-block" onclick="recolectar_data();"  @click="SetDAtaCita()"> <i class="fa fa-calendar-alt"></i> Agregar cita</button>
 		      </div>
 			</div>
 
@@ -235,6 +224,7 @@ if (strlen($_GET["date"]) > 10)
  	hora_inicio = document.getElementById("hora_inicio").value;
  	fecha_fin = document.getElementById("fecha_fin").value;
  	hora_fin = document.getElementById("hora_fin").value;
+ 	
  	Observaciones = document.getElementById("Observaciones").value;
  	
  }

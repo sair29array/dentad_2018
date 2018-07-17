@@ -41,6 +41,7 @@
                   <th>tipo</th>
                   <th>D/T</th>
                   <th>Fecha asignación</th>
+                  <th>Fecha finalización</th>
                   <th></th>
                  
                 </tr>
@@ -68,6 +69,7 @@
                                     <td>
                                       <?php echo $diag["fecha_asignacion"]; ?>
                                     </td>
+                                    <td></td>
                                     <td><div class="btn-group">
                                       <a href="./?view=Odontograma&id=<?php echo $_GET["id"]; ?>&Idr=<?php echo $_GET["Idr"];?>&SendDiagnosticoTOPapelera=<?php echo $diag["id"]; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Quitar de esta pieza"><i class="fa fa-times" ></i></a>
                                     </div></td>
@@ -97,6 +99,7 @@
 
                           		<td><?php echo $t["tratamiento"]; ?></td>
                           		<td><?php echo $trat["fecha_asignacion"]; ?></td>
+                              <td><?php echo $trat["fecha_finalizacion"]; ?></td>
                               <td><div class="btn-group">
                                 
                                 <a href="./?view=Odontograma&id=<?php echo $_GET["id"]; ?>&Idr=<?php echo $_GET["Idr"]; ?>&SendTratamientoTOPapelera=<?php echo $trat["id"]; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Quitar de esta pieza"><i class="fa fa-times" ></i></a>
@@ -123,6 +126,7 @@
                   <th>tipo</th>
                   <th>D/T</th>
                   <th>Fecha asignación</th>
+                  <th>Fecha finalización</th>
                   <th></th>
                 
                 </tr>

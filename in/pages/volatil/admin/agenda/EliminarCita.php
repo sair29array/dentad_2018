@@ -11,27 +11,28 @@
           <link rel="stylesheet" type="text/css" href="dist/fullcalendar/bootstrap-clockpicker.css">
 <div class="content-wrapper" id="EliminarCitas">
 	
-	
-	<div class="row">
-		<div class="col-12">
+
 			
 				<!-- Modal para agendar  citas -->
 		<div class="" id="ModalAgendarCitas" tabindex="-1"  >
-		  <div class="modal-dialog">
-		    <div class="modal-content">
+		  <div class="card">
+		    <div class="">
 		      <div class="modal-header">
-		        <h3 class="modal-title" >¿Está seguro de que desea aliminar esta cita?</b> </h3>
+		        <h3 class="modal-title" >Confirmación de proceso, eliminar cita</b> </h3>
 		        <button type="button" class="close"  >
-		          <span > <a href="./Agenda"><i class="fa fa-calendar-alt"></i></a></span>
+		          <span > <a href="./Agenda"><h1><i class="fa fa-calendar-alt"></i></h1></a></span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
 		        	<div v-if="!messageexito">
-		        		 <div class="form-group">
-		        	
+		        		
+		        	<div class="col-md-12">
+		        		<div class="row">
+		        			
 
 
-			        	<label>Paciente</label>	
+			        	<div class="col-md-6">
+			        		<label>Paciente</label>	
 	                  	<select disabled="true"  id="id_paciente" class="form-control select2" style="width: 100%;">
 
 	                  
@@ -45,49 +46,28 @@
 	                  	} 
 	                  	?>
 	                   
-	                  </select>
-	                 
-
-
-	                  <?php 
-	                  	$motivo_consulta = array('Control de tratamiento', 'Rutina de tratamiento', 'Limpieza', 'Consulta de valoración', 'Urgencia');
-	                   ?>
-
-	                 
-
-
+	                  	</select>
+			        	</div>
 
 		        	
-
-		        	<label class="mt-3">Motivo de consulta</label>
-		        	<select disabled="true" id="motivo_consulta" class="form-control " style="width: 100%;">
+	                  <div class="col-md-6">
+	                  	<label >Motivo de consulta</label>
+		        	<select disabled="true" id="motivo_consulta" class="form-control select2 " style="width: 100%;">
 
 	                  
-	                  <option  <?php if ($motivo_consulta[0] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?> value="<?php echo $motivo_consulta[0]; ?>"><?php echo $motivo_consulta[0]; ?></option> 
 
-	                  <option <?php if ($motivo_consulta[1] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[1]; ?>"><?php echo $motivo_consulta[1]; ?></option> 
-
-	                  <option <?php if ($motivo_consulta[2] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[2]; ?>"><?php echo $motivo_consulta[2]; ?></option> 
-
-	                  <option <?php if ($motivo_consulta[3] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[3]; ?>"><?php echo $motivo_consulta[3]; ?></option> 
-
-	                  <option <?php if ($motivo_consulta[4] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[4]; ?>"><?php echo $motivo_consulta[4]; ?></option> 
-
+	                 <?php 
+	                  		foreach ($superMotivosC->GetMotivosConsulta($id_clinica) as $motivo) 
+	                  		{
+	                  			?> <option value="<?php echo $motivo["motivoc"] ; ?>" <?php if ($motivo["motivoc"] == $cita["title"]) {
+	                  		?> selected="true" <?php  } ?>><?php echo $motivo["motivoc"] ;  ?></option> <?php 
+	                  		}
+	                  ?>
 
 
 	                  	
 	                  </select>
-	                  <br>
+	                  </div>
 						
 
 	                  		<?php 
@@ -98,7 +78,8 @@
 	                  			$fecha_fin = substr($cita["end"] , 0, 10 );
 	                  			$hora_fin = substr($cita["end"] , 11 );
 	                  		 ?>
-	                  			<label class="mt-3">Fecha y hora de inicio</label>
+	                  	<div class="col-md-6">
+	                  		<label class="mt-5">Fecha y hora de inicio</label>
 	                  			
 	                  			
 	                  			<input disabled="true"id="fecha_inicio" type="date" class="form-control"  name="" value="<?php echo $fecha_inicio; ?>">
@@ -110,8 +91,11 @@
 					        	<input disabled="true" placeholder="HH:MM" class="form-control" type="text" id="hora_inicio" name="txtHora" value="<?php echo $hora_inicio; ?>">
 					        	</div>
 
+	                  	</div>
 
-					        	<label class="mt-3">Fecha y hora de finalización</label>
+					     
+					    <div class="col-md-6">
+					    	<label class="mt-5">Fecha y hora de finalización</label>
 					       
 	                  			<input disabled="true" value="<?php echo $fecha_fin; ?>" type="date" min="<?php echo $fecha_inicio ; ?>" class="form-control" id="fecha_fin" >
 
@@ -121,30 +105,35 @@
 					        		
 					        	<input disabled="true" value="<?php echo $hora_fin; ?>" placeholder="HH:MM" class="form-control" type="text" id="hora_fin" >
 					        	</div>
+					    </div>
 
-					        	<label class="mt-4">Valor cita </label>
+					     
+					    <div class="col-md-6">
+					    		<label class="mt-5">Valor cita </label>
 					        	
 					        	<input disabled="true" value="<?php echo $cita["valor_cita"]; ?>" id="valor_cita" type="number" min="0" name="" class="form-control" placeholder="$">
+					    </div>
 	                  		
 	                  	
-	                  
-
-
-
-		        	<label class="mt-2" >Observaciones</label>
+	                	<div class="col-md-6">
+	                		<label class="mt-5" >Observaciones</label>
 		        	<textarea disabled="true"  rows="3" class="form-control" id="Observaciones"><?php echo $cita["descripcion"]; ?> </textarea>
+	                	</div>  
+
+
+
+		        	
 
 		        	<!--label>Color:</label>
 		        	<input  type="color" name="txtColor" id="txtColor" value="#007bff"-->
-		        </div>
-		      </div>
-		      <div v-if="!messageexito" class="modal-footer">
-		       
-		        <button type="button"  class="btn btn-danger btn-block"   @click="EnviarApapelera()"> <i class="fa fa-trash-alt"></i> Eliminar cita</button>
-		         
-		           
-		      </div>
+		        		</div>
 		        	</div>
+		      
+		      		</div>
+			      <div v-if="!messageexito" class="modal-footer">
+			        <button type="button"  class="btn btn-danger btn-block"   @click="EnviarApapelera()"> <i class="fa fa-trash-alt"></i> Eliminar cita</button>
+			      </div>
+		      </div>
 
 
 		        	<transition name="slide-fade">
@@ -159,10 +148,9 @@
 		  
 		</div>
 
-			</div>
-		</div>
 	</div>
 </div>
+
 
 
 <script >

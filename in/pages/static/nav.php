@@ -56,6 +56,7 @@ $num_Asistentes = $super_colaboradores->GetNumeroColaboradoresIdUSer($iuser["id"
   var fecha_actual = "<?php echo $fecha_actual ?>";
 
   var email_ = "<?php echo $_SESSION["_user_log"]; ?>";
+  var id_user_receptor_admin = "<?php echo $iuser["id"]; ?>";
   var nombre_adminictrador_DB = "<?php echo $iuser["nombre"] ?>";
   var email_administrador_DB = "<?php echo $iuser["email"] ?>";
   var id_user_="<?php echo $iuser["id"] ?>"; 

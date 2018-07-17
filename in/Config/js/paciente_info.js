@@ -13,6 +13,20 @@ var app = new Vue({
     anio_nacimiento_DB: anio_nacimiento_DB,
     edad_DB : edad_DB,
     sexo_DB : sexo_DB
+  },
+
+  methods: 
+  {
+    go_to_agendar()
+    {
+        window.location="./?view=AgendarCitaPaciente&id="+this.num_identidad_DB;
+    },
+
+    
+    go_to_odontograma()
+    {
+      window.location="./?view=Odontograma&id="+this.num_identidad_DB;
+    }
   }
 })
 

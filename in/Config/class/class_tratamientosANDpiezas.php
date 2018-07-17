@@ -8,7 +8,7 @@
 			if ($estado_tratamiento == 1) {
 			    $consulta = mysqli_query($conn, "INSERT INTO tratamiento_piezas (id_tratamiento, id_pieza_o_diente, id_paciente, tratamiento_en_proceso, fecha_asignacion)  VALUES ('$id_tratamiento', '$pieza_diente','$id_paciente_seleccionado', 1, '$fecha_actual')");
 			}else if ($estado_tratamiento == 2) {
-				$consulta = mysqli_query($conn, "INSERT INTO tratamiento_piezas (id_tratamiento, id_pieza_o_diente, id_paciente, tratamiento_finalizado, fecha_asignacion)  VALUES ('$id_tratamiento', '$pieza_diente','$id_paciente_seleccionado', 1, '$fecha_actual')");
+				$consulta = mysqli_query($conn, "INSERT INTO tratamiento_piezas (id_tratamiento, id_pieza_o_diente, id_paciente, tratamiento_finalizado, fecha_asignacion, fecha_finalizacion)  VALUES ('$id_tratamiento', '$pieza_diente','$id_paciente_seleccionado', 1, '$fecha_actual', '$fecha_actual')");
 			}
 		}
 

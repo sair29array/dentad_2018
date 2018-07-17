@@ -86,6 +86,12 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                   <p>Diagnósticos</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="./Motivos-de-consulta" class="nav-link <?php if($_GET["view"]=='Motivos-de-consulta'){?> active <?php } ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Motivos de consulta</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -128,7 +134,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./Todos-mis-pacientes" class="nav-link <?php if(@$_GET["view"]=="Todos-mis-pacientes"){?> active <?php  } ?>">
+                <a href="./Todos-mis-pacientes" class="nav-link <?php if(@$_GET["view"]=="Todos-mis-pacientes" || @$_GET["view"]=="paciente"){?> active <?php  } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Todos</p>
                 </a>
@@ -229,6 +235,12 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                 <a href="./Diagnósticos" class="nav-link <?php if($_GET["view"]=='Diagnósticos'){?> active <?php } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Diagnósticos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./Motivos-de-consulta" class="nav-link <?php if($_GET["view"]=='Motivos-de-consulta'){?> active <?php } ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Motivos de consulta</p>
                 </a>
               </li>
               <li class="nav-item">

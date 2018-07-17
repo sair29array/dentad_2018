@@ -11,27 +11,28 @@
           <link rel="stylesheet" type="text/css" href="dist/fullcalendar/bootstrap-clockpicker.css">
 <div class="content-wrapper" id="modificadorDeCitas">
 	
-	
-	<div class="row">
-		<div class="col-12">
+
+
 			
 				<!-- Modal para agendar  citas -->
 		<div class="" id="ModalAgendarCitas" tabindex="-1"  >
-		  <div class="modal-dialog">
-		    <div class="modal-content">
+		 
+		    <div class="card">
 		      <div class="modal-header">
 		        <h2 class="modal-title" >Modificar cita</b> </h2>
 		        <button type="button" class="close"  >
-		          <span > <a href="./Agenda"><i class="fa fa-calendar-alt"></i></a></span>
+		          <span > <a href="./Agenda"><h1><i class="fa fa-calendar-alt"></i></h1></a></span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
 		        	<div v-if="!messageexito">
-		        		 <div class="form-group">
-		        	
+						<div class="col-md-12">
+							<div class="row">
+								
 
 
-			        	<label>Paciente</label>	
+			        	<div class="col-md-6">
+			        		<label>Paciente</label>	
 	                  	<select  id="id_paciente" class="form-control select2" style="width: 100%;">
 
 	                  
@@ -46,49 +47,37 @@
 	                  	?>
 	                   
 	                  </select>
+			        	</div>
 	                 
 
 
-	                  <?php 
-	                  	$motivo_consulta = array('Control de tratamiento', 'Rutina de tratamiento', 'Limpieza', 'Consulta de valoración', 'Urgencia');
-	                   ?>
+	                 
 
 	                 
 
-
-
-		        	
-
+                      <div class="col-md-6">
+                      	
 		        	<label>Motivo de consulta</label>
-		        	<select id="motivo_consulta" class="form-control mt-4" style="width: 100%;">
+		        	<select id="motivo_consulta" class="form-control select2" style="width: 100%;">
 
 	                  
-	                  <option  <?php if ($motivo_consulta[0] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?> value="<?php echo $motivo_consulta[0]; ?>"><?php echo $motivo_consulta[0]; ?></option> 
-
-	                  <option <?php if ($motivo_consulta[1] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[1]; ?>"><?php echo $motivo_consulta[1]; ?></option> 
-
-	                  <option <?php if ($motivo_consulta[2] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[2]; ?>"><?php echo $motivo_consulta[2]; ?></option> 
-
-	                  <option <?php if ($motivo_consulta[3] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[3]; ?>"><?php echo $motivo_consulta[3]; ?></option> 
-
-	                  <option <?php if ($motivo_consulta[4] == $cita["title"]) {
-	                  		?> selected="true" <?php 
-	                  } ?>  value="<?php echo $motivo_consulta[4]; ?>"><?php echo $motivo_consulta[4]; ?></option> 
+	                  <?php 
+	                  		foreach ($superMotivosC->GetMotivosConsulta($id_clinica) as $motivo) 
+	                  		{
+	                  			?> <option value="<?php echo $motivo["motivoc"] ; ?>" <?php if ($motivo["motivoc"] == $cita["title"]) {
+	                  		?> selected="true" <?php  } ?>><?php echo $motivo["motivoc"] ;  ?></option> <?php 
+	                  		}
+	                  ?>
 
 
 
 	                  	
 	                  </select>
-	                  <br>
-						
+                      </div>
+
+		        	
+
+	                  				
 
 	                  		<?php 
 	                  		/// esto lo hago porque lo que viene desde la DB es una cadena complete
@@ -98,53 +87,70 @@
 	                  			$fecha_fin = substr($cita["end"] , 0, 10 );
 	                  			$hora_fin = substr($cita["end"] , 11 );
 	                  		 ?>
-	                  			<label class="mt-3">Fecha y hora de inicio</label>
+
+
+	                  <div class="col-md-6"> 
+	                  	<label class="mt-5">Fecha y hora de inicio</label>
 	                  			
 	                  			<p v-if="fecha_inicio_null" class="text-danger">Este campo es obligatorio (*)</p>
 	                  			<input @click="fecha_inicio_null = false" id="fecha_inicio" type="date" class="form-control"  name="" value="<?php echo $fecha_inicio; ?>">
-
-	                  		
-				                  
-					        	<div class="input-group clockpicker" data-autoclose="true">
+						<br><br>
+	                  	<div class="input-group clockpicker" data-autoclose="true">
 					        <p v-if="hora_inicio_null" class="text-danger">Este campo es obligatorio (*)</p>
 					        	<input @click = "hora_inicio_null = false" placeholder="HH:MM" class="form-control" type="text" id="hora_inicio" name="txtHora" value="<?php echo $hora_inicio; ?>">
 					        	</div>
+	                  </div>
 
-
-					        	<label class="mt-3">Fecha y hora de finalización</label>
+	                  		
+				      <div class="col-md-6"> 
+				      	<label class="mt-5">Fecha y hora de finalización</label>
 					        	<p v-if="fecha_fin_null" class="text-danger">Este campo es obligatorio (*)</p>
 	                  			<input @click="fecha_fin_null = false" value="<?php echo $fecha_fin; ?>" type="date" min="<?php echo $fecha_inicio ; ?>" class="form-control" id="fecha_fin" >
 
-	                  		
+	                  		<br><br>
 				                  
 					        	<div class="input-group clockpicker" data-autoclose="true">
 					        		<p v-if="hora_fin_null" class="text-danger">Este campo es obligatorio (*)</p>
 					        	<input @click="hora_fin_null = false" value="<?php echo $hora_fin; ?>" placeholder="HH:MM" class="form-control" type="text" id="hora_fin" >
 					        	</div>
+				      </div>
+				      		
+				          
+					        
 
+
+					        	
+				      <div class="col-md-6">
+				      	
 					        	<label class="mt-4">Valor cita </label>
 					        	<p v-if="valor_cita_null" class="text-danger">Este campo es obligatorio (*)</p>
 					        	<input @click="valor_cita_null = false" value="<?php echo $cita["valor_cita"]; ?>" id="valor_cita" type="number" min="0" name="" class="form-control" placeholder="$">
+				      </div>
 	                  		
 	                  	
-	                  
-
-
-
-		        	<label class="mt-2" >Observaciones</label>
+	                	<div class="col-md-6">
+	                		<label class="mt-4" >Observaciones</label>
 		        	<textarea   rows="3" class="form-control" id="Observaciones"><?php echo $cita["descripcion"]; ?> </textarea>
+	                	</div>  
+
+
+
+		        	
 
 		        	<!--label>Color:</label>
 		        	<input  type="color" name="txtColor" id="txtColor" value="#007bff"-->
-		        </div>
-		      </div>
-		      <div v-if="!messageexito" class="modal-footer">
-		       
-		        <button type="button"  class="btn btn-primary btn-block" onclick="RecolectarDAtosAactualizar();"  @click="SetDAtaCita()"> <i class="fa fa-calendar-alt"></i> Actualizar cita</button>
-		         
-		           
-		      </div>
-		        	</div>
+							</div>
+						</div>
+		      		</div>
+
+
+				      <div v-if="!messageexito" class="modal-footer">
+				       
+				        <button type="button"  class="btn btn-primary btn-block" onclick="RecolectarDAtosAactualizar();"  @click="SetDAtaCita()"> <i class="fa fa-calendar-alt"></i> Actualizar cita</button>
+				         
+				           
+				      </div>
+		       </div>
 
 
 		        	<transition name="slide-fade">
@@ -155,13 +161,11 @@
                          </div> 
 		        	</transition>
 		       
-		    </div>
+		   
 		  
-		</div>
-
 			</div>
-		</div>
-	</div>
+
+	    </div>
 </div>
 
 

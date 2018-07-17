@@ -93,39 +93,16 @@
 
           <div class="col-md-8">
             <div class="card">
-	            <div class="card-header p-2">
-	                
-	                <ul class="nav nav-pills">
-	                	<li class="nav-item"><a class="nav-link active" href="#info-clinica" data-toggle="tab">Opciones</a></li>
-	                  
-	                </ul>
-	              </div><!-- /.card-header -->
-
-	              <div class="card-body">
-	                <div class="tab-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	            
+	           <div class="card-body">
+	            <div class="tab-content">
 
 	        <div class="col-md-12">
             <!-- Application buttons -->
 
               <div class="card-body">
                 
-                <a class="btn btn-app">
+                <a @click="go_to_agendar()" class="btn btn-app">
                   <i class="fa fa-calendar-alt"></i> Agendar
                 </a>
 
@@ -144,7 +121,7 @@
                 <a class="btn btn-app">
                   <i class="fa fa-id-card-alt"></i> Tratamiento
                 </a>
-                <a class="btn btn-app">
+                <a @click="go_to_odontograma()" class="btn btn-app">
                   <i class="fa fa-project-diagram"></i> Odontograma
                 </a>
                
@@ -158,12 +135,6 @@
               
           </div>
 
-
-
-
-
-
-
 	                </div>
 	                      
 	              </div>      		
@@ -175,7 +146,10 @@
 
 
         </div>
+        <?php include("Seguimiento.php"); ?>
       </div>
+
+
     </section>
 
 </div>

@@ -1,16 +1,12 @@
 
 <?php  
-	if ($isset_Clinica != 0)  // si existe una clinixa
-	{
-		$DiagnosticosDB = $super_diagnosticos -> GetAllDiagnosticos($id_clinica); 
-	}
+	
 ?>
  
 
   <!-- Content Wrapper. Contains page content -->
-  <div id="diagnosticos" class="content-wrapper">
-    <pre>{{$data}}</pre>
-    <!-- Content Header (Page header) -->
+  <div id="MotivosConsulta" class="content-wrapper">
+        <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -30,7 +26,7 @@
             <div class="alert alert-info alert-dismissable col-sm-12">
               <i class="fa fa-warning"></i>
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <b><a href="./Mi-Clínica">¿No tienes una clínica?</a>, </b> Configura tu clínica y podrás registrar los diagnósticos que podrás usar más adelante.
+              <b><a href="./Mi-Clínica">¿No tienes una clínica?</a>, </b> Configura tu clínica y podrás registrar los motivos de consulta que usarás más adelante.
             </div>
         </div>
                     <?php 
@@ -44,11 +40,11 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title"><?php if ($isset_Clinica != 0) {
-                  ?> Diagnósticos de <b class="text-primary"> <?php echo $clinica["nombre"]; ?> 
+                  ?> Motivos de consulta de <b class="text-primary"> <?php echo $clinica["nombre"]; ?> 
               </b>
               	<div> <?php if (!isset($_GET["Edit"])) 
                 {
-                  ?><a v-if="!view_add_diagnostico" href="#" @click="changeView('Form_registrar_diagnostico')" class="btn btn-default float-right" > <i class="fa fa-file-medical"></i></a> <?php 
+                  ?><a v-if="!view_add_motivo" href="#" @click="changeView('Form_registrar_motivo')" class="btn btn-default float-right" > <i class="fa fa-file-medical"></i></a> <?php 
                 } ?>
            
                 <script>var delete_id = "";</script>
@@ -58,8 +54,8 @@
                     ?>
                     <br><br>
                      <div class="alert alert-danger alert-dismissible">
-                         <h4><i class="icon fa fa-info"></i>Confirmar</h4>Eliminar el diagnóstico seleccionado <b><?php echo "#". $_GET["Delete"].$id_clinica; ?></b> 
-                         <b style="cursor: pointer;" @click="DeleteDiagnostico()" >Eliminar</b> / 
+                         <h4><i class="icon fa fa-info"></i>Confirmar</h4>Eliminar el motivo de consulta seleccionado <b><?php echo "#". $_GET["Delete"].$id_clinica; ?></b> 
+                         <b style="cursor: pointer;" @click="DeleteMotivoc()" >Eliminar</b> / 
                          <a href="./Diagnósticos"><b>Cancelar</b></a>
                        </div>  
                        <script>
@@ -73,19 +69,19 @@
 
                   <script>
                     var Edit_ID = "";
-                    var Edit_diagnostico = "";
+                    var Edit_motivoc = "";
                   </script>
                     <?php 
 
                     if (isset($_GET["Edit"])) 
                     {
-                      $d = $super_diagnosticos -> GetDiagnosticoId($_GET["Edit"]);
-                      foreach ($d as $key ) {}
+                      $m = $superMotivosC-> GetMotivoConsultaId($_GET["Edit"]);
+                      foreach ($m as $key ) {}
                         ?>
 
                         <script>
                          Edit_ID = "<?php echo $_GET["Edit"]  ?>";
-                         Edit_diagnostico = "<?php echo $key["diagnostico"] ?>"
+                         Edit_motivoc = "<?php echo $key["motivoc"] ?>"
                         </script>
                     <!-- FORMULARIO PARA EDITAR DIAGNOSTICOS -->
                       <transition name="slide-fade">
@@ -94,27 +90,27 @@
 
 
                           <div class="card-header">
-                            <h3 class="card-title">Actualizar diagnóstico</h3>
+                            <h3 class="card-title">Actualizar motivo de consulta</h3>
 
                           </div>
                           <!-- /.card-header -->
                           <div class="card-body">
                             <div  v-if="!message_edit" class="row">
                               <div class="col-md-12">
-                                <div v-if="!Edit_diagnostico_null" class="form-group">
-                                  <label>Diagnóstico</label>
-                                  <input type="text" class="form-control" v-model="Edit_diagnostico">
+                                <div v-if="!Edit_motivoc_null" class="form-group">
+                                  <label>Motivo</label>
+                                  <input type="text" class="form-control" v-model="Edit_motivoc">
                                 </div>
-                                 <div v-if="Edit_diagnostico_null" class="form-group">
-                                  <label>Diagnóstico</label>
-                                  <input  type="text" class="form-control border-danger" v-model="Edit_diagnostico" @click="Edit_diagnostico_null = false">
+                                 <div v-if="Edit_motivoc_null" class="form-group">
+                                  <label>Motivo</label>
+                                  <input  type="text" class="form-control border-danger" v-model="Edit_motivoc" @click="Edit_motivoc_null = false">
                                  </div>
                               </div>
 
                               <!-- /.col -->
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <button @click="Edit_diagnostico_()" class="btn btn-primary Large btn-block btn-lg" >Actualizar</button>
+                                  <button @click="Edit_motivoc_()" class="btn btn-primary Large btn-block btn-lg" >Actualizar</button>
                                 </div>
                               </div>
                                <div class="col-md-6">
@@ -163,36 +159,36 @@
 
                     <!-- FORMULARIO PARA AGREGAR DIAGNOSTICOS -->
                       <transition name="slide-fade">
-                       <div v-if="view_add_diagnostico">
+                       <div v-if="view_add_motivo">
                         <div class="card card-default mt-4">
 
 
                           <div class="card-header">
-                            <h3 class="card-title">Registrar un nuevo diagnóstico</h3>
+                            <h3 class="card-title">Registrar un nuevo motivo de consulta</h3>
 
                             <div v-if="!message" class="card-tools">
                               <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                              <button @click="cerrarFormularioDiagnosticos()" type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                              <button @click="cerrarFormularioMOtivos()" type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                           </div>
                           <!-- /.card-header -->
                           <div class="card-body">
                             <div  v-if="!message" class="row">
                               <div class="col-md-12">
-                                <div v-if="!diagnostico_null" class="form-group">
-                                  <label>Diagnóstico</label>
-                                  <input type="text" class="form-control" v-model="diagnostico">
+                                <div v-if="!motivoc_null" class="form-group">
+                                  <label>Motivo de consulta</label>
+                                  <input type="text" class="form-control" v-model="motivo_consulta">
                                 </div>
-                                 <div v-if="diagnostico_null" class="form-group">
-                                  <label>Diagnóstico</label>
-                                  <input  type="text" class="form-control border-danger" v-model="diagnostico" @click="diagnostico_null = false">
+                                 <div v-if="motivoc_null" class="form-group">
+                                  <label>Motivo de consulta</label>
+                                  <input  type="text" class="form-control border-danger" v-model="motivo_consulta" @click="motivoc_null = false">
                               	 </div>
                               </div>
 
                               <!-- /.col -->
                               <div class="col-md-12">
                                 <div class="form-group">
-                                  <button @click="add_diagnostico()" class="btn btn-primary Large btn-block btn-lg" >Registrar</button>
+                                  <button @click="add_motivo()" class="btn btn-primary Large btn-block btn-lg" >Registrar</button>
                                 </div>
                               </div>
                               <!-- /.col -->
@@ -252,7 +248,7 @@
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Diagnóstico</th>
+                  <th>Motivo de consulta</th>
                   <th></th>
                  
                 </tr>
@@ -262,7 +258,7 @@
                     <?php 
                         if ($isset_Clinica != 0)  // si el user tiene una clinica a su
                         {
-                          foreach ($DiagnosticosDB as $diag) 
+                          foreach ($superMotivosC->GetMotivosConsulta($id_clinica) as $mc) 
                           {
                             ?>
                                 <tr>
@@ -270,21 +266,21 @@
                                         <i class="fa fa-briefcase"></i>
                                         
                                             <?php 
-                                        echo "#". $diag["id"] .  $diag["id_clinica"];
+                                        echo "#". $mc["id"] .  $mc["id_clinica"];
                                         ?>
                                         
                                     </td>
 
                                     <td>
-                                        <?php echo $diag["diagnostico"]; ?>
+                                        <?php echo $mc["motivoc"]; ?>
                                     </td>
 
 
                                    
                                      <td>
                                      	 <div class="btn-group">
-                                     	 	<a href="./?view=Diagnósticos&Edit=<?php echo $diag["id"]; ?>" class="btn btn-info"><i class="fa fa-edit"></i></a >
-                                     	 	<a href="./?view=Diagnósticos&Delete=<?php echo $diag["id"]; ?>" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
+                                     	 	<a href="./?view=Motivos-de-consulta&Edit=<?php echo $mc["id"]; ?>" class="btn btn-info"><i class="fa fa-edit"></i></a >
+                                     	 	<a href="./?view=Motivos-de-consulta&Delete=<?php echo $mc["id"]; ?>" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
                                      	 </div>
                                      </td>
 
@@ -300,7 +296,7 @@
                 <tfoot>
                 <tr>
                   <th>ID</th>
-                  <th>Diagnóstico</th>
+                  <th>Motivo de consulta</th>
                   <th></th>
                 
                 </tr>

@@ -21,7 +21,7 @@
 				
 				$title = $motivo_consulta;
 				$descripcion = $observaciones;
-				$color = "#007bff";
+				$color = "#fd7e14;";
 				$textcolor = "#FFFFFF";
 				$start = $fecha_inicio. " ". $hora_inicio;
 				$end = $fecha_fin. " ". $hora_fin ;
@@ -76,6 +76,17 @@
 			   $consult = mysqli_query($conn, "UPDATE agenda_citas SET 
 			   	papelera = 1  WHERE id_cita = '$id_cita' ");
 			}
+
+
+
+			public function GetAllCItasDeUnPaciente($id_paciente)
+			{
+
+				include("../Config/conexion.php");
+				 $consult = mysqli_query($conn, "SELECT * FROM agenda_citas where id_paciente = '$id_paciente' ");
+			    return mysqli_fetch_all($consult, MYSQLI_ASSOC);
+			}
+			
 			
 
 		}

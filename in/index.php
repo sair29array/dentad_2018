@@ -13,6 +13,8 @@ require_once("Config/class/class_diagnosticos.php");
 require_once("Config/class/class_pieza_diente.php");
 require_once("Config/class/class_diagnosticosANDpiezas.php");
 require_once("Config/class/class_tratamientosANDpiezas.php");
+require_once("Config/class/class_motivos_de_consulta.php");
+require_once("Config/class/class_Seguimiento_pacientes.php");
 
 
 
@@ -37,6 +39,8 @@ $super_diagnosticos = new diagnosticos();
 $super_dientes = new diente();
 $superDiagDent = new diagnosticosANDpiezas();
 $superTratDent = new tratamientosANDpiezas();
+$superMotivosC = new MotivosConsulta();
+$superSeguimientoP = new SeguimientoPacientes();
 
 if (!isset($_SESSION["_user_log"])) 
   {
@@ -169,6 +173,10 @@ to get the desired effect
         include("pages/volatil/admin/tratamientosYdiagnosticos/tratamientos.php");
       }else if (@$_GET["view"]=="Diagnósticos") {
         include("pages/volatil/admin/tratamientosYdiagnosticos/diagnosticos.php");
+      }else if (@$_GET["view"]=="AgendarCitaPaciente") {
+        include("pages/volatil/admin/AgendarCitaApacienteSeleccionado.php");
+      }else if (@$_GET["view"]=="Motivos-de-consulta") {
+        include("pages/volatil/admin/Motivos-de-consulta.php");
       }
     }else
     {
@@ -197,6 +205,10 @@ to get the desired effect
         include("pages/volatil/admin/tratamientosYdiagnosticos/tratamientos.php");
       }else if (@$_GET["view"]=="Diagnósticos") {
         include("pages/volatil/admin/tratamientosYdiagnosticos/diagnosticos.php");
+      }else if (@$_GET["view"]=="AgendarCitaPaciente") {
+        include("pages/volatil/admin/AgendarCitaApacienteSeleccionado.php");
+      }else if (@$_GET["view"]=="Motivos-de-consulta") {
+        include("pages/volatil/admin/Motivos-de-consulta.php");
       }
     }
     require_once("pages/static/footer.php");
@@ -287,7 +299,7 @@ to get the desired effect
       ?>  <script src="Config/js/Pacientes.js" ></script> <?php 
     }
 
-    if (@$_GET["view"]=="AgendarCita") {
+    if (@$_GET["view"]=="AgendarCita" || @$_GET["view"]=="AgendarCitaPaciente") {
       ?>  <script src="Config/js/AgendarCita.js" ></script> <?php 
     }
 
@@ -317,6 +329,10 @@ to get the desired effect
 
     if (@$_GET["view"]=="Diagnósticos") {
       ?><script src="Config/js/Diagnosticos.js"></script> <?php 
+    }
+
+    if (@$_GET["view"]=="Motivos-de-consulta") {
+      ?><script src="Config/js/MotivosConsulta.js"></script> <?php 
     }
  ?>
 
