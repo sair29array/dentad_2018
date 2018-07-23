@@ -67,25 +67,50 @@
                                if ($cita["start"] == $fechayhorainicio) 
                                {
                                   $id_de_la_cita_programada = $cita["id_cita"];
+                                  $estado_de_la_cita = $cita["estado_de_la_cita"];
+                                  $fecha_de_atencion = $cita["fecha_de_atencion"];
                                }
                               }
                             }
+
+
+
+                            /// saber que useradmin fue quien ejecuto el proces:
+                            $ua = $useR -> GetDatosUsuarioID($h["id_user_admin_o_asistente"]);
+                            foreach ($ua as $userAdmin) {}
                          
                             ?>
                                 <tr>
                                    <td> <p style="display: none;"><?php echo $h["id"]; ?></p><?php echo $h["fecha"]; ?></td>
                                    <td><?php echo "<b>".$h["proceso"]."</b> " ;?></td>
                                    <td><?php echo $h["descripcion_proceso"]; ?> <p class="text-primary"><?php echo $cuando; ?></p></td>
-                                   <td><?php echo $h["id_user_admin_o_asistente"]; ?></td>
+                                   <td><?php echo $userAdmin["email"]; ?></td>
                                    <td><?php if ($h["proceso"]=="Agendamiento_de_cita") {
                                     
                                      ?> <div class="btn-group"> 
                                        
-                                       <a href="./?view=paciente&id=<?php echo $_GET["id"]; ?>&CitaEnEspera=<?php echo $id_de_la_cita_programada; ?>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Poner en espera"><i class="fa fa-user-clock"></i></a>
+                                       <?php 
+                                        if ($estado_de_la_cita=="") 
+                                        {
+                                          ?>
+                                          <a href="./?view=paciente&id=<?php echo $_GET["id"]; ?>&CitaEnEspera=<?php echo $id_de_la_cita_programada; ?>" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Poner en espera"><i class="fa fa-user-clock"></i></a>
+                                          <?php 
+                                        }else if ($estado_de_la_cita=="en_espera") {
+                                          ?>
+                                          <a href="./?view=paciente&id=<?php echo $_GET["id"]; ?>&AtenderPacienteCita=<?php echo $id_de_la_cita_programada; ?>" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="Atender este paciente"><i class="fa fa-street-view"></i></a>
+                                          <?php 
+                                        }else if ($estado_de_la_cita=="atendiendo") {
+                                          ?> 
+                                           <a href="./?view=paciente&id=<?php echo $_GET["id"]; ?>&FinalizarAtencionCita=<?php echo $id_de_la_cita_programada; ?>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Finalizar"><i class="fa fa-user-check"></i></a>
+                                          <?php 
+                                        }else if ($estado_de_la_cita=="finalizada") {
+                                          echo "Cita finalizada - " .$fecha_de_atencion;
+                                        }
+                                        ?>
 
-                                       <a href="./?view=paciente&id=<?php echo $_GET["id"]; ?>&AtenderPacienteCita=<?php echo $id_de_la_cita_programada; ?>" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="Atender este paciente"><i class="fa fa-street-view"></i></a>
+                                       
 
-                                       <a href="./?view=paciente&id=<?php echo $_GET["id"]; ?>&FinalizarAtencionCita=<?php echo $id_de_la_cita_programada; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Finalizar"><i class="fa fa-user-check"></i></a>
+                                      
                                      </div> <?php 
                                    } ?></td>
                                    
@@ -129,6 +154,25 @@ $(function () {
 })
 
 </script>
+
+
+
+<?php 
+    /// control: 
+  if (isset($_GET["CitaEnEspera"])) 
+  {
+      $super_agenda->PonerEnEspera($_GET["CitaEnEspera"], $id_clinica);
+      ?><script >window.location="./?view=paciente&id=<?php echo $_GET["id"]; ?>"</script> <?php 
+  }else if (isset($_GET["AtenderPacienteCita"])) 
+  {
+    $super_agenda->AtenderCita($_GET["AtenderPacienteCita"]);
+      ?><script >window.location="./?view=paciente&id=<?php echo $_GET["id"]; ?>"</script> <?php 
+  }else if (isset($_GET["FinalizarAtencionCita"])) 
+  {
+    $super_agenda->FinalizarAtencionCita($_GET["FinalizarAtencionCita"], date("Y-m-d"));
+      ?><script >window.location="./?view=paciente&id=<?php echo $_GET["id"]; ?>"</script> <?php 
+  }
+ ?>
 
 
       

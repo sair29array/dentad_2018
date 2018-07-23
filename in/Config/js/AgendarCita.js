@@ -1,7 +1,7 @@
 var app = new Vue({
   el: '#AgendarForm',
   data: {
-    email_: id_user_receptor_admin,
+    email_: email_,
     fecha_actual: fecha_actual,
     message: '',
     messageexito: false,

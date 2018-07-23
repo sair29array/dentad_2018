@@ -80,5 +80,64 @@
 
 		 	return $actual_date;
 		 }
+
+
+
+
+		 public function GetMesString($num_mes)
+		 {
+		 	$mes_String = "";
+		 	switch ($num_mes) {
+		 		case '01':
+		 			$mes_String = "Enero";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '02':
+		 			$mes_String = "Febrero";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '03':
+		 			$mes_String = "Marzo";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '04':
+		 			$mes_String = "Abril";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '05':
+		 			$mes_String = "Mayo";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '06':
+		 			$mes_String = "Junio";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '07':
+		 			$mes_String = "Julio";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '08':
+		 			$mes_String = "Agosto";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '09':
+		 			$mes_String = "Septiembre";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '10':
+		 			$mes_String = "Octubre";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '11':
+		 			$mes_String = "Noviembre";
+		 			break;
+		 	}switch ($num_mes) {
+		 		case '12':
+		 			$mes_String = "Diciembre";
+		 			break;
+		 	}
+
+		 	return $mes_String;
+		 }
 	}
  ?>

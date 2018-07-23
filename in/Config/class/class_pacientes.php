@@ -83,7 +83,16 @@
 
 			public function GetPacienteID($id_paciente)
 			{
+				 // desde un objeto php con axios
 				include("../../../Config/conexion.php");
+				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where id = '$id_paciente' " );
+				return mysqli_fetch_all($consult_, MYSQLI_ASSOC);
+			}
+
+			public function GetPacienteIDin($id_paciente)
+			{
+				// desde una archivo interno al index inluido
+				include("../Config/conexion.php");
 				$consult_ = mysqli_query($conn, "SELECT * FROM pacientes where id = '$id_paciente' " );
 				return mysqli_fetch_all($consult_, MYSQLI_ASSOC);
 			}

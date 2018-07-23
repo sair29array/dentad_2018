@@ -20,3 +20,5 @@ RewriteRule ^(Odontograma)$ index.php?view=$1
 RewriteRule ^(Tratamientos)$ index.php?view=$1
 RewriteRule ^(Diagnósticos)$ index.php?view=$1
 RewriteRule ^(Motivos-de-consulta)$ index.php?view=$1
+RewriteRule ^(Atención-a-pacientes)$ index.php?view=$1
+

@@ -31,7 +31,7 @@
     		},
 
     		
-    	    events: "http://127.0.0.1:2145/dentad/in/Config/sql/sql_get_array_de_citas.php?id_clinica="+id_clinica_,
+    	    events: "http://dentad.online/in/Config/sql/sql_get_array_de_citas.php?id_clinica="+id_clinica_,
 
     		eventClick:function(calEvent,jsEvent,view){
     			
@@ -52,7 +52,7 @@
 
 <div class="content-wrapper">
 	<div class="row">
-			<div class="col-12">
+		<div class="col-12">
 				<span style="background-color: #cee6fd;" class="badge">Paciente ausente</span>
 				<span class="badge badge-warning">En espera</span>
 				<span class="badge badge-success">Atendiendo</span>

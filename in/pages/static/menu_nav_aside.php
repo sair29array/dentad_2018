@@ -146,9 +146,9 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="./Atención-a-pacientes" class="nav-link <?php if(@$_GET["view"]=="Atención-a-pacientes"){?> active <?php  } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Historial / evolución</p>
+                  <p>Atención</p>
                 </a>
               </li>
             </ul>
@@ -166,7 +166,13 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Ingresos </p>
+                  <p>Ingresos activos </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Ingresos pasivos </p>
                 </a>
               </li>
               <li class="nav-item">
@@ -178,7 +184,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General</p>
+                  <p>Reporte general</p>
                 </a>
               </li>
             </ul>

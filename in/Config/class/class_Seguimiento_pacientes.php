@@ -24,5 +24,7 @@
 				$consult_ = mysqli_query($conn, "SELECT * FROM agenda_citas where id_paciente = '$id_paciente' AND start = '$fecha_y_hora_inicio'  ORDER BY id DESC " );
 				return mysqli_fetch_all($consult_, MYSQLI_ASSOC);
 		}
+
+		
 	}	
 ?>

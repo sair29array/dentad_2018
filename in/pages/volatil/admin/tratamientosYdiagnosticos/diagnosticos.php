@@ -9,7 +9,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div id="diagnosticos" class="content-wrapper">
-    <pre>{{$data}}</pre>
+    
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">

@@ -177,6 +177,8 @@ to get the desired effect
         include("pages/volatil/admin/AgendarCitaApacienteSeleccionado.php");
       }else if (@$_GET["view"]=="Motivos-de-consulta") {
         include("pages/volatil/admin/Motivos-de-consulta.php");
+      }else if (@$_GET["view"]=="Atención-a-pacientes") {
+        include("pages/volatil/pacientes/atencionPacientes.php");
       }
     }else
     {
@@ -209,6 +211,8 @@ to get the desired effect
         include("pages/volatil/admin/AgendarCitaApacienteSeleccionado.php");
       }else if (@$_GET["view"]=="Motivos-de-consulta") {
         include("pages/volatil/admin/Motivos-de-consulta.php");
+      }else if (@$_GET["view"]=="Atención-a-pacientes") {
+        include("pages/volatil/pacientes/atencionPacientes.php");
       }
     }
     require_once("pages/static/footer.php");
@@ -333,6 +337,9 @@ to get the desired effect
 
     if (@$_GET["view"]=="Motivos-de-consulta") {
       ?><script src="Config/js/MotivosConsulta.js"></script> <?php 
+    }
+    if (@$_GET["view"]=="Atención-a-pacientes") {
+      ?><script src="Config/js/Atencion-a-pacientes.js"></script> <?php 
     }
  ?>
 
