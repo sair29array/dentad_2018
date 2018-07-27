@@ -287,6 +287,8 @@ var app = new Vue({
               formData.append('id_tratamiento', this.id_tratamiento);
               formData.append('id_diagnostico', this.id_diagnostico);
               formData.append('fecha_actual', this.fecha_actual);
+              formData.append('email_admin_receptor', email_);
+              formData.append('id_clinica', id_clinica);
               if (this.tratamientoFinalizado) 
               {
                  formData.append('estado_tratamiento', 2);
@@ -364,6 +366,8 @@ var app = new Vue({
               formData.append('id_tratamiento', this.id_tratamientor2);
               formData.append('id_diagnostico', this.id_diagnosticor2);
               formData.append('fecha_actual', this.fecha_actual);
+              formData.append('email_admin_receptor', email_);
+              formData.append('id_clinica', id_clinica);
               if (this.tratamientoFinalizador2) 
               {
                  formData.append('estado_tratamiento', 2);
@@ -440,6 +444,8 @@ var app = new Vue({
               formData.append('id_tratamiento', this.id_tratamientor3);
               formData.append('id_diagnostico', this.id_diagnosticor3);
               formData.append('fecha_actual', this.fecha_actual);
+              formData.append('email_admin_receptor', email_);
+              formData.append('id_clinica', id_clinica);
               if (this.tratamientoFinalizador3) 
               {
                  formData.append('estado_tratamiento', 2);
@@ -514,6 +520,8 @@ var app = new Vue({
               formData.append('id_tratamiento', this.id_tratamientor4);
               formData.append('id_diagnostico', this.id_diagnosticor4);
               formData.append('fecha_actual', this.fecha_actual);
+              formData.append('email_admin_receptor', email_);
+              formData.append('id_clinica', id_clinica);
               if (this.tratamientoFinalizador4) 
               {
                  formData.append('estado_tratamiento', 2);
@@ -643,6 +651,9 @@ var app = new Vue({
                   formData.append('id_tratamiento', this.id_tratamiento);
                   formData.append('id_diagnostico', this.id_diagnostico);
                   formData.append('fecha_actual', this.fecha_actual);
+                  formData.append('fecha_actual', this.fecha_actual);
+              formData.append('email_admin_receptor', email_);
+              formData.append('id_clinica', id_clinica);
                   if (this.tratamientoFinalizado) 
                   {
                      formData.append('estado_tratamiento', 2);

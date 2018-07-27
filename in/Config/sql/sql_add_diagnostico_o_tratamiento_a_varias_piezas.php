@@ -3,8 +3,10 @@
 
 require_once("../class/class_tratamientosANDpiezas.php");
 require_once("../class/class_diagnosticosANDpiezas.php");
+require_once("../class/class_Seguimiento_pacientes.php");
 $super_tratp = new  tratamientosANDpiezas();
 $super_diagp = new  diagnosticosANDpiezas();
+$super_seguimientos = new SeguimientoPacientes();
 $action = 'read';
 
 if (isset($_POST['action']))
@@ -19,7 +21,12 @@ if ($action == 'read')
 
 		if ($_POST["recuadro"] == 1) 
 		{
-			   
+			   $arrayPiezasDiagR1 = array(); // ARRAY de diagnosticos aginados a las piezas
+			   $CountDpiezasDIag = 0;
+			   $arrayPiezasTratR1 = array(); // ARRAY de tratamientos asignados a las piezas
+			   $CountDpiezasTrat = 0;
+
+
 			   $id_paciente_seleccionado = $_POST["id_paciente_seleccionado"]; //
 			   $id_tratamiento = $_POST["id_tratamiento"];
 			   $id_diagnostico = $_POST["id_diagnostico"];
@@ -28,13 +35,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 11;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -45,13 +57,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 12;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -61,13 +78,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 13;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -77,13 +99,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 14;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -93,13 +120,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 15;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -109,13 +141,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 16;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -125,13 +162,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 17;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -141,13 +183,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 18;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -158,13 +205,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 51;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -174,13 +226,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 52;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -190,13 +247,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 53;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -206,13 +268,18 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 54;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
@@ -222,18 +289,69 @@ if ($action == 'read')
 			 	{
 				 	/// agregar un diagnostico
 			 		$pieza_diente = 55;
+			 		
 				   if ($id_diagnostico != "" && $id_diagnostico != 0)
 				   {
+				   	array_push($arrayPiezasDiagR1, $pieza_diente);
+				   	$CountDpiezasDIag++;
 				      $super_diagp -> SetDiagnosticoApieza($id_paciente_seleccionado, $id_diagnostico, $pieza_diente, $_POST["fecha_actual"]) ; }
 				   
 					/// agregar un tratamiento 
 				  if ($id_tratamiento != "" && $id_tratamiento != 0)
 				  {
+				  	array_push($arrayPiezasTratR1, $pieza_diente);
+				   	$CountDpiezasTrat++;
 				    $super_tratp -> SetTratpApieza($id_paciente_seleccionado, $id_tratamiento, $pieza_diente, $_POST["estado_tratamiento"], $_POST["fecha_actual"]);
 				  }
 
 			 	}
 				
+
+
+
+				/// si hay diagnosticos asignados
+			 	if ($CountDpiezasDIag > 0) /// contamos la cantidad de valores que tiene el array de diagnosticos
+			 	{
+			 		if ($CountDpiezasDIag > 1)
+			 		{
+			 			$descripcion_proceso_ = "Piezas:". json_encode( $arrayPiezasDiagR1);
+			 		}else 
+			 		{
+			 			$descripcion_proceso_ = "Pieza: ".  $arrayPiezasDiagR1[0];
+			 		}
+			 		$proceso_ = "Diagnóstico_asignado";
+			      
+			      $super_seguimientos -> NewSeguimientoDiag_Trat($id_paciente_seleccionado,$_POST["id_clinica"],$proceso_, $descripcion_proceso_, $_POST["fecha_actual"],$_POST["email_admin_receptor"], $id_diagnostico);
+			 	}
+			 	/// add seguimiento si hay Tratamientos asignados
+			 	if ($CountDpiezasTrat > 0) 
+			 	{
+			 		if ($CountDpiezasTrat > 1) 
+			 		{
+			 			 if ($_POST["estado_tratamiento"] == 1) 
+			 			 {
+			 			 	$descripcion_proceso_ = "Piezas:". json_encode( $arrayPiezasTratR1) . " Tratamiento_en_proceso";
+			 			 }else
+			 			 {
+			 			 	$descripcion_proceso_ = "Piezas:". json_encode( $arrayPiezasTratR1) . " Tratamiento_finalizado";
+			 			 }
+			 			
+			 		}else
+			 		{
+			 			if ($_POST["estado_tratamiento"] == 1) 
+			 			 {
+			 			 $descripcion_proceso_ = "Pieza: ". $arrayPiezasTratR1[0] . " Tratamiento_en_proceso";
+			 			 }else
+			 			 {
+			 			 	$descripcion_proceso_ = "Pieza: ".  $arrayPiezasTratR1[0]. " Tratamiento_finalizado";
+			 			 }
+			 			
+			 		}
+			 		$proceso_ = "Tratamiento_asignado";
+			 		 $super_seguimientos -> NewSeguimientoDiag_Trat($id_paciente_seleccionado,$_POST["id_clinica"],$proceso_, $descripcion_proceso_, $_POST["fecha_actual"],$_POST["email_admin_receptor"], $id_tratamiento);
+			 	}
+	
+
 			  $res['resul']=1;	
 		}
 

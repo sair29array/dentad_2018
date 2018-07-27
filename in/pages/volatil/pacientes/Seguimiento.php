@@ -56,7 +56,7 @@
                               }
                             }
 
-                            /// SI EL SEGUIMIENTO ES AL PROCESO DE AGENDAMIENTO DE CITAS
+                            /// SI EL SEGUIMIENTO ES EL PROCESO DE AGENDAMIENTO DE CITAS
                             $fechayhorainicio =  $h["fecha_en_que_se_ejecutara_el_proceso"];
                             if ($h["proceso"]== "Agendamiento_de_cita") 
                             {
@@ -74,6 +74,18 @@
                             }
 
 
+                            //// SI EL SEGUIMIENTO ES DE UN TRATAMIENTO O UN DIAGNOSTTICO ASIGNADO 
+                            if ($h["proceso"] =="Tratamiento_asignado") 
+                            {
+                              $t = $super_tratamientos -> GetTratamientoID($h["tratamiento_o_diagnostico"]);
+                              foreach ($t as $tratamiento) {}
+                            }else if ($h["proceso"] == "Diagnóstico_asignado")
+                            {
+                              $d = $super_diagnosticos ->GetDiagnosticoId($h["tratamiento_o_diagnostico"]);
+                              foreach ($d as $diagnostico_) {}
+                            }
+
+
 
                             /// saber que useradmin fue quien ejecuto el proces:
                             $ua = $useR -> GetDatosUsuarioID($h["id_user_admin_o_asistente"]);
@@ -83,7 +95,23 @@
                                 <tr>
                                    <td> <p style="display: none;"><?php echo $h["id"]; ?></p><?php echo $h["fecha"]; ?></td>
                                    <td><?php echo "<b>".$h["proceso"]."</b> " ;?></td>
-                                   <td><?php echo $h["descripcion_proceso"]; ?> <p class="text-primary"><?php echo $cuando; ?></p></td>
+                                   
+
+                                   <td>
+                                    <?php echo $h["descripcion_proceso"]; ?> 
+                                     <p class="text-primary">
+
+                                      <?php  if ($h["proceso"]== "Agendamiento_de_cita"){echo $cuando; } 
+
+                                      else if ($h["proceso"] =="Tratamiento_asignado"){echo $tratamiento["tratamiento"]; }
+                                        else if ($h["proceso"] == "Diagnóstico_asignado") {
+                                          echo $diagnostico_["diagnostico"];
+                                        }
+                                       ?></p>
+                                   </td>
+
+
+
                                    <td><?php echo $userAdmin["email"]; ?></td>
                                    <td><?php if ($h["proceso"]=="Agendamiento_de_cita") {
                                     

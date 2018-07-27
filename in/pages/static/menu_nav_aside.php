@@ -136,7 +136,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
               <li class="nav-item">
                 <a href="./Todos-mis-pacientes" class="nav-link <?php if(@$_GET["view"]=="Todos-mis-pacientes" || @$_GET["view"]=="paciente"){?> active <?php  } ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Todos</p>
+                  <p>Observación</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -154,7 +154,7 @@ $clinica_ = $super_clinica -> GetInfoClinicaUserId($iuser["id"]);
             </ul>
           </li>
           
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview <?php if(@$_GET["reportes"]== "ingactivos" || @$_GET["reportes"]== "ingpasivos" || @$_GET["reportes"]== "egresos" || @$_GET["reportes"]=="repgeneral"){?>menu-open<?php } ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-clipboard-list"></i>
               <p>

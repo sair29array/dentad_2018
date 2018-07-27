@@ -32,7 +32,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h4>Pacientes de <?php echo $nombre_clinica; ?></h4>
+            
           </div>
           
         </div>
@@ -43,32 +43,40 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
 
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
-                <div class="text-center">
+                <div class="col-sm-12">
+                  <div class="row">
+                        <div class="col-sm-6 ">
                 
-                	<img class='profile-user-img img-fluid img-circle'
+                  <!--img class='profile-user-img img-fluid img-circle'
                        src="dist/img/paciente.png" 
-                       alt="img-clínica">
+                       alt="img-clínica"-->
 
-                </div>
+                      <img src="dist/img/profile.png" alt="..." class="img-thumbnail img-fluid">
 
-                <h3 class="profile-username text-center">
+                  </div>
+
+                <div class="col-sm-6">  
+                  <h3 class="profile-username">
                 {{nombre_paciente_DB}} {{apellidos_paciente_DB}}
                </h3>
 
-                <h6  class=" text-center">{{tipo_identidad_DB}} : {{num_identidad_DB}} </h6>
-                <h6  class=" text-center">Edad: {{edad_DB}} </h6>
-                <h6  class=" text-center">Sexo: {{sexo_DB}} </h6>
+                <h6  class="">{{tipo_identidad_DB}} : {{num_identidad_DB}} </h6>
+                <h6>Edad: {{edad_DB}} </h6>
+                <h6>Sexo: {{sexo_DB}} </h6>
 
 
                 <div class="text-muted text-group">
-                	<h6  class=" text-center"><b>Contactos:</b></h6>
-				<h6  class=" text-center"> {{telefono_DB}} </h6>
-				<h6  class=" text-center">{{email_DB}} </h6>
+                  <h6><b>Contactos:</b></h6>
+                  <h6> {{telefono_DB}} </h6>
+                  <h6>{{email_DB}} </h6>
+                </div>
+                </div>
+                  </div>
                 </div>
 
               </div>
@@ -91,27 +99,22 @@
 
 
 
-          <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-6">
+            <div class="card card-primary card-outline">
 	            
 	           <div class="card-body">
-	            <div class="tab-content">
 
-	        <div class="col-md-12">
+	        
             <!-- Application buttons -->
 
-              <div class="card-body">
+              
                 
                 <a @click="go_to_agendar()" class="btn btn-app">
                   <i class="fa fa-calendar-alt"></i> Agendar
                 </a>
 
                 <a class="btn btn-app">
-                  <i class="fa fa-hand-holding-usd"></i> Cobrar
-                </a>
-
-                <a class="btn btn-app">
-                  <i class="fa fa-archive"></i> Historial pagos
+                  <i class="fa fa-archive"></i>Pagos
                 </a>
               
                 <a class="btn btn-app">
@@ -132,12 +135,7 @@
                   <i class="fa fa-times"></i> Eliminar
                 </a>
               </div>
-              
-          </div>
-
-	                </div>
-	                      
-	              </div>      		
+              	                      	         
 
                     
            </div>
